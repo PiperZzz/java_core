@@ -2,7 +2,8 @@ package base.core.leetcode;
 
 public class MaxSubArray {
     public static int maxSubArray(int[] nums) {
-        if (nums == null || nums.length == 0) {
+        // Boundary Condition Check: if the input array is null or has less than 2 elements
+        if (nums == null || nums.length <= 1) {
             return 0;
         }
         

@@ -4,6 +4,11 @@ import java.util.*;
 
 public class TwoSum {
     public static int[] twoSum(int[] nums, int target) {
+        // Boundary Condition Check: if the input array is null or has less than 2 elements
+        if (nums == null || nums.length <= 1) {
+            throw new IllegalArgumentException("Invalid input array");
+        }
+
         Map<Integer, Integer> map = new HashMap<>();
     
         for (int i = 0; i < nums.length; i++) {
