@@ -82,9 +82,20 @@ public class MyList {
     // ensureCapacity() - increase the capacity of the ArrayList
     // containsAll() - check if the ArrayList contains all elements of a collection
     // retainAll() - retain all elements of a collection in the ArrayList
+    
+    public static void forLoopArrayList(List<String> myList) {
+        for (int i = 0; i < myList.size(); i++) {
+            System.out.println(myList.get(i));
+        }
+
+        for (String element : myList) {
+            System.out.println(element);
+        }
+    }
 
     // forEach() - iterate over the ArrayList
     public static void forEachArrayList(List<String> myList) {
+        myList.forEach(element -> System.out.println(element));
         myList.forEach(System.out::println);
     }
 
@@ -96,6 +107,9 @@ public class MyList {
     // parallelStream() - get a parallel stream over the elements in the ArrayList
 
     // stream() - get a stream over the elements in the ArrayList
+    public static void streamArrayList(List<String> myList) {
+        myList.stream().forEach(System.out::println);
+    }
 
     // removeIf() - remove elements of the ArrayList based on a predicate
     // replaceAll() - replace all elements of the ArrayList with the specified element
