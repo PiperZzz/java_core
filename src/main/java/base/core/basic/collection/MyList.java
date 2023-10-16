@@ -3,6 +3,8 @@ package base.core.basic.collection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MyList {
     // List is an ordered collection of elements
@@ -28,7 +30,7 @@ public class MyList {
     List<String> arrayList = new ArrayList<>(Arrays.asList(array));
 
     // 这种声明的ArrayList是java.util.ArrayList，它的大小是可变的
-    ArrayList<String> arrayList2 = new ArrayList<>(Arrays.asList(array));
+    ArrayList<String> mutableArrayList = new ArrayList<>(Arrays.asList(array));
 
 
 
@@ -56,21 +58,46 @@ public class MyList {
     // lastIndexOf() - get the index of the last occurrence of an element in the ArrayList
     // toArray() - convert an ArrayList to an array
     // subList() - get a sublist from the ArrayList
+
     // sort() - sort the ArrayList
+    public static void sortArrayList(List<String> myList) {
+        
+        // Before Java 8 Merge Sort
+        // After Java 8 TimSort, merge sort + insertion sort
+        myList.sort((a, b) -> a.compareTo(b));
+        myList.sort(Comparator.naturalOrder());
+        
+        // Before Java 8 Merge Sort
+        // After Java 8 Quick Sort + Merge Sort
+        Collections.sort(myList);
+    }
+
+    // addIfAbsent() - add an element to the ArrayList if it is not already present
+
     // reverse() - reverse the ArrayList
+
     // clone() - clone an ArrayList
+
     // trimToSize() - trim the capacity of the ArrayList to the current size
     // ensureCapacity() - increase the capacity of the ArrayList
     // containsAll() - check if the ArrayList contains all elements of a collection
     // retainAll() - retain all elements of a collection in the ArrayList
+
     // forEach() - iterate over the ArrayList
+    public static void forEachArrayList(List<String> myList) {
+        myList.forEach(System.out::println);
+    }
+
     // iterator() - get an iterator over the elements in the ArrayList
+
     // listIterator() - get a list iterator over the elements in the ArrayList
     // listIterator(int index) - get a list iterator over the elements in the ArrayList starting at the specified index
     // spliterator() - get a spliterator over the elements in the ArrayList
     // parallelStream() - get a parallel stream over the elements in the ArrayList
+
     // stream() - get a stream over the elements in the ArrayList
+
     // removeIf() - remove elements of the ArrayList based on a predicate
     // replaceAll() - replace all elements of the ArrayList with the specified element
-    // sort() - sort the ArrayList
+    
 }
