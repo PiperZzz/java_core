@@ -34,5 +34,6 @@ public class TopKFrequentElements {
         return result;
     }
 
-    //PriorityQueue解，本质上是被分离出来的TreeMap的KeySet，所以可以直接使用TreeMap
+    // PriorityQueue解，本质上是被分离出来的TreeMap的KeySet，所以可以直接使用TreeMap
+    // 解题的核心还是用哈希表记录每个元素的频率，然后使用TreeMap，按照频率作为键，元素列表作为值
 }
