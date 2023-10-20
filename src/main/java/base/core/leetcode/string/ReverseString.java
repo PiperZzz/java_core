@@ -1,10 +1,12 @@
 package base.core.leetcode.string;
 
 public class ReverseString {
-    public String reverseString(String s) {
-        char[] chars = s.toCharArray();
+    public String reverseString(String str) {
+        // Boundary check
+
+        char[] chars = str.toCharArray();
         int left = 0;
-        int right = s.length() - 1;
+        int right = str.length() - 1;
         
         while (left < right) {
             // 交换左右指针指向的字符
