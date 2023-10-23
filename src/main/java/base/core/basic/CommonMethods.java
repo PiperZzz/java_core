@@ -1,8 +1,60 @@
 package base.core.basic;
 
 import java.math.*;
+import java.util.*;
 
 public class CommonMethods {
+    /* int[]和Integer[]之间是无法Auto Boxing的 */
+
+    public static void listToArray() {
+        // 声明一个整数数组
+        Integer[] integerArray = {1, 2, 3, 4, 5};
+        // 先用Arrays的静态方法将数组转换为List，再将该List作为ArrayList的构造函数的参数
+        List<Integer> list = new ArrayList<>(Arrays.asList(integerArray));
+        list.add(6);
+        Integer[] integerArray2 = new Integer[1];
+        // toArray()方法参数Integer是指定的目标数组类型，[0]是目标数组的长度
+        // 如果指定数组的长度小于ArrayList的size，则会将数组的长度自动调整到可以装下ArrayList中的全部元素
+        // 否则数组中的空位将被填充为null
+        integerArray2 = list.toArray(new Integer[0]);
+        System.out.println(Arrays.toString(integerArray2));
+    }
+
+    public static void arrayMethods() {
+        int[] intArray = {1, 2, 3, 4, 5};
+        
+        System.out.println(Arrays.toString(intArray));
+
+        System.out.println(Arrays.binarySearch(intArray, 3));
+ 
+        Arrays.sort(intArray);
+
+        System.out.println(intArray.length);
+
+        System.out.println(intArray[intArray.length - 1]);
+
+        int[] intArray2 = new int[5];
+        System.arraycopy(intArray, 0, intArray2, 0, intArray.length);
+    }
+
+    public static void listMethods() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+
+        System.out.println(list.size());
+
+        System.out.println(list.get(list.size() - 1));
+
+        list.add(6);
+
+        list.set(0, null);
+
+        list.remove(0);
+
+        list.sort(null);
+
+        list.stream().forEach(System.out::println);
+    }
+
     /* Sring Methods */
     String str = "Hello World";
     String str2 = new String("Hello World");
@@ -46,6 +98,20 @@ public class CommonMethods {
     char[] charArray = {'a', 'b', 'c', 'd', 'e'};
     String[] strArray = {"a", "b", "c", "d", "e"};
 
+    Map<Character, Integer> map = new HashMap<>();
 
+    char char1 = 'a';
+    
+    public void mapPutAutoBoxing() {
+        map.put(char1, int1);
+        
+        System.out.println(map);
+    }
 
+    
+
+    public void arrayToList() {
+        int[] intArray1 = new int[5];
+        Integer[] intArray2 = {1, 2, 3, 4, 5};
+    }
 }
