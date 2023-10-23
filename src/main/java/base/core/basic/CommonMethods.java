@@ -2,6 +2,7 @@ package base.core.basic;
 
 import java.math.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CommonMethods {
     /* int[]和Integer[]之间是无法Auto Boxing的 */
@@ -55,14 +56,35 @@ public class CommonMethods {
         list.stream().forEach(System.out::println);
     }
 
-    /* Sring Methods */
-    String str = "Hello World";
-    String str2 = new String("Hello World");
-
-    public void practiseStringMethods() {
+    public void stringMethods() {
+        String str = "Hello World";
+        String str2 = new String("Hello World");
+        
         for (int i = 0; i < str.length() - 1; i++) {
             System.out.println(str.charAt(i));
         }
+        
+        char[] charArray = str2.toCharArray();
+        
+        for (char c : charArray) {
+            System.out.println(c);
+        }
+
+    }
+
+    public void collectionStreamMethods() {
+        List<Integer> list = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // 非静态stream()方法在集合List、Set和Map的Entry中
+        list.stream().forEach(System.out::println);
+        set.stream().forEach(System.out::println);
+        map.entrySet().stream().forEach(System.out::println);
+
+        int[] intArray = {1, 2, 3, 4, 5};
+        // 静态stream()方法在Arrays中   
+        Arrays.stream(intArray).forEach(System.out::println);
     }
 
     int int1 = 10;
