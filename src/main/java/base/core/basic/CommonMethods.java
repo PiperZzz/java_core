@@ -2,7 +2,6 @@ package base.core.basic;
 
 import java.math.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CommonMethods {
     /* int[]和Integer[]之间是无法Auto Boxing的 */
@@ -58,6 +57,7 @@ public class CommonMethods {
         String str = "Hello World";
         String str2 = new String("Hello World");
         
+        // String的长度length()方法
         for (int i = 0; i < str.length() - 1; i++) {
             System.out.println(str.charAt(i));
         }
@@ -145,5 +145,6 @@ public class CommonMethods {
     public void arrayToList() {
         int[] intArray1 = new int[5];
         Integer[] intArray2 = {1, 2, 3, 4, 5};
+        int l = intArray1.length;
     }
 }
