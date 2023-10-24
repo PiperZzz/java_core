@@ -1,4 +1,4 @@
-package base.core.leetcode;
+package base.core.leetcode.hashing;
 
 import java.util.*;
 
