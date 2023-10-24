@@ -22,16 +22,19 @@ public class CommonMethods {
 
     public static void arrayMethods() {
         int[] intArray = {1, 2, 3, 4, 5};
-        
-        System.out.println(Arrays.toString(intArray));
 
-        System.out.println(Arrays.binarySearch(intArray, 3));
+        // Arrays.equals()方法可以用来比较两个数组是否相等
+        Arrays.equals(intArray, intArray);
+        
+        Arrays.toString(intArray);
+
+        Arrays.binarySearch(intArray, 3);
  
         Arrays.sort(intArray);
 
-        System.out.println(intArray.length);
+        int length = intArray.length;
 
-        System.out.println(intArray[intArray.length - 1]);
+        int item = intArray[intArray.length - 1];
 
         int[] intArray2 = new int[5];
         System.arraycopy(intArray, 0, intArray2, 0, intArray.length);
