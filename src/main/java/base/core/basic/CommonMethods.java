@@ -62,7 +62,19 @@ public class CommonMethods {
             System.out.println(str.charAt(i));
         }
         
+        // String到char[]的转换
         char[] charArray = str2.toCharArray();
+
+        // char[]到String的转换
+        // String的构造函数可以接受char[]作为参数
+        String str3 = new String(charArray);
+        // String的静态方法valueOf()可以接受char[]作为参数
+        String str4 = String.valueOf(charArray);
+
+        // String[]到String的转换
+        String[] strArray = {"a", "b", "c", "d", "e"};
+        // String的静态方法join()可以接受String[]作为参数
+        String str5 = String.join("", strArray);
         
         for (char c : charArray) {
             System.out.println(c);
