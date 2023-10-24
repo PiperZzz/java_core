@@ -52,8 +52,6 @@ public class CommonMethods {
         list.remove(0);
 
         list.sort(null);
-
-        list.stream().forEach(System.out::println);
     }
 
     public void stringMethods() {
