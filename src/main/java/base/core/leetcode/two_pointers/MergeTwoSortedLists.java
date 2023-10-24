@@ -1,4 +1,6 @@
-package base.core.leetcode;
+package base.core.leetcode.two_pointers;
+
+import base.core.leetcode.ListNode;
 
 public class MergeTwoSortedLists {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
