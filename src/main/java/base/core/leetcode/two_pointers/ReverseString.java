@@ -1,4 +1,4 @@
-package base.core.leetcode.twopointer;
+package base.core.leetcode.two_pointers;
 
 public class ReverseString {
     public String reverseString(String str) {

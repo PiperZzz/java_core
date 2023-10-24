@@ -1,4 +1,4 @@
-package base.core.leetcode.nestloop;
+package base.core.leetcode.nest_loop;
 
 public class SearchSubstring {
     public int strStr(String haystack, String needle) {

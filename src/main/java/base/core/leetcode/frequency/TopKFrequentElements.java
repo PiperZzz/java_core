@@ -1,4 +1,4 @@
-package base.core.leetcode.sort;
+package base.core.leetcode.frequency;
 
 import java.util.ArrayList;
 import java.util.HashMap;
