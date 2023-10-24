@@ -1,4 +1,4 @@
-package base.core.leetcode;
+package base.core.leetcode.sliding_window;
 
 public class MaxSubArray {
     public static int maxSubArray(int[] nums) {

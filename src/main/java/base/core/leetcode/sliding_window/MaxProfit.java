@@ -1,4 +1,4 @@
-package base.core.leetcode;
+package base.core.leetcode.sliding_window;
 
 public class MaxProfit {
     public static int maxProfit(int[] prices) {
