@@ -1,6 +1,6 @@
 package base.core.leetcode.loop;
 
-public class largestNumber {
+public class LargestNumber {
     public int findMax(int[] intArray) {
         int maxNumber = Integer.MIN_VALUE;
 
