@@ -4,20 +4,16 @@ import java.math.*;
 import java.util.*;
 
 public class CommonMethods {
-    /* int[]和Integer[]之间是无法Auto Boxing的 */
 
-    public static void listToArray() {
-        // 声明一个整数数组
-        Integer[] integerArray = {1, 2, 3, 4, 5};
-        // 先用Arrays的静态方法将数组转换为List，再将该List作为ArrayList的构造函数的参数
-        List<Integer> list = new ArrayList<>(Arrays.asList(integerArray));
-        list.add(6);
-        Integer[] integerArray2 = new Integer[1];
-        // toArray()方法参数Integer是指定的目标数组类型，[0]是目标数组的长度
-        // 如果指定数组的长度小于ArrayList的size，则会将数组的长度自动调整到可以装下ArrayList中的全部元素
-        // 否则数组中的空位将被填充为null
-        integerArray2 = list.toArray(new Integer[0]);
-        System.out.println(Arrays.toString(integerArray2));
+    public static void staticMethods() {
+        // Math类的静态方法
+        Math.abs(-1);
+        Math.max(1, 2);
+        Math.min(1, 2);
+        
+        // Integer类的静态方法
+        int max =Integer.MAX_VALUE;
+        int min = Integer.MIN_VALUE;
     }
 
     public static void arrayMethods() {
