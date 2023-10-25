@@ -2,7 +2,7 @@ package base.core.leetcode.two_pointers;
 
 public class ReverseString {
     public String reverseString(String str) {
-        // Boundary check
+        // Boundary Condition Check
 
         char[] chars = str.toCharArray();
         // 双指针初始化，left从头部开始遍历，right从尾部开始遍历

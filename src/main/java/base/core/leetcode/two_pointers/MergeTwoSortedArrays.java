@@ -2,6 +2,7 @@ package base.core.leetcode.two_pointers;
 
 public class MergeTwoSortedArrays {
     public static int[] mergeArrays(int[] array1, int[] array2) {
+        // Boundary Condition Check
 
         int[] arrayMerged = new int[array1.length + array2.length];
         

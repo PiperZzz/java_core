@@ -8,6 +8,11 @@ import java.util.TreeMap;
 
 public class TopKFrequentElements {
     public static List<Integer> topKFrequent(int[] nums, int k) {
+        // Boundary Condition Check
+        if (nums == null || nums.length == 0 || k <= 0) {
+            return new ArrayList<>();
+        }
+
         // 使用哈希表记录每个元素的频率
         Map<Integer, Integer> frequencyMap = new HashMap<>();
         for (int num : nums) {

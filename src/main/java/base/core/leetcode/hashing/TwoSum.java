@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TwoSum {
     public static int[] twoSum(int[] nums, int target) {
-        // Boundary Condition Check: if the input array is null or has less than 2 elements
+        // Boundary Condition Check
         if (nums == null || nums.length <= 1) {
             throw new IllegalArgumentException("Invalid input array");
         }

@@ -5,6 +5,11 @@ import java.util.Map;
 
 public class FirstUniqueCharater {
     public char firstUniqueChar(String str) {
+        // Boundary Condition Check
+        if (str == null || str.length() == 0) {
+            return ' '; // 或者你可以根据需求返回其他值
+        }
+        
         // 创建一个HashMap来存储字符和它们出现的次数
         Map<Character, Integer> charCount = new HashMap<>();
 

@@ -4,6 +4,11 @@ import java.util.Arrays;
 
 public class CoinChange {
     public int minCoins(int[] coins, int amount) {
+        // Boundary Condition Check
+        if (coins == null || coins.length == 0 || amount < 0) {
+            return -1;
+        }
+
         // 创建一个整数数组 dp，用于存储每个金额所需的最小硬币数量
         // dp[i] 表示金额 i 所需的最小硬币数量 - 这个值在计算过程中会不断动态更新
         // dp[amount] 就是我们要求的结果

@@ -4,11 +4,12 @@ import base.core.leetcode.ListNode;
 
 public class MergeTwoSortedLists {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        // Boundary Condition Check: if the input lists are null
+        // Boundary Condition Check
         if (l1 == null && l2 == null) {
             return null;
         }
-
+        
+        //初始化
         ListNode dummy = new ListNode(-1);
         ListNode current = dummy;
     

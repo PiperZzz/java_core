@@ -6,6 +6,11 @@ public class FindMissingNumber {
     // 前提：数组中的数字是从0到n，且只有一个数字缺失
     // 如果数字不会出现重复，那么可以直接用求和公式，然后减去数组中所有元素的和，得到的就是缺失的数字
     public int findMissingNumber(int[] nums) {
+        // Boundary Condition Check
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+
         int expectedSum = nums.length * (nums.length + 1) / 2;
         int actualSum = 0;
         for (int num : nums) {

@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class Anagram {
     public static boolean areAnagrams(String str1, String str2) {
         // Boundary Condition Check
-        // If the input strings are null
         if (str1 == null || str2 == null) {
             return false;
         }

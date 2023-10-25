@@ -2,8 +2,7 @@ package base.core.leetcode.sliding_window;
 
 public class MaxProfit {
     public static int maxProfit(int[] prices) {
-        // Boundary Condition Check 
-        // if the input array is null or has less than 2 elements
+        // Boundary Condition Check
         if (prices == null || prices.length <= 1) {
             return 0;
         }

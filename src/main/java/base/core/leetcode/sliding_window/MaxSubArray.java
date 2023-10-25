@@ -2,7 +2,7 @@ package base.core.leetcode.sliding_window;
 
 public class MaxSubArray {
     public static int maxSubArray(int[] nums) {
-        // Boundary Condition Check: if the input array is null or has less than 2 elements
+        // Boundary Condition Check
         if (nums == null || nums.length <= 1) {
             return 0;
         }

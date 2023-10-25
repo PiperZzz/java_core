@@ -2,6 +2,11 @@ package base.core.leetcode.loop;
 
 public class MoveZeroesToArrayEnd {
     public void moveZeroes(int[] nums) {
+        // Boundary Condition Check
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+
         int nonZeroIndex = 0;  // 指向下一个非零元素应该插入的位置
     
         // 将所有非零元素移到数组前面

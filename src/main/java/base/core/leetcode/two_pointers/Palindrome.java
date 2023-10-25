@@ -2,6 +2,8 @@ package base.core.leetcode.two_pointers;
 
 public class Palindrome {
     public boolean isPalindrome(String str) {
+        // Boundary Condition Check
+
         // 删除非字母数字字符并将字符串转换为小写
         str = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         
