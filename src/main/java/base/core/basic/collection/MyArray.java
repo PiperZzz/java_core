@@ -39,9 +39,9 @@ public class MyArray {
         // toArray()方法参数中，引用类型是指定的目标数组类型，这里是Integer，[int]是目标数组的长度,这是0可以担保目标数组的长度和ArrayList的size一致
         // 如果指定数组的长度小于ArrayList的size，则会将数组的长度自动调整到可以装下ArrayList中的全部元素
         // 否则数组中的空位将被填充为null
-        integerArray2 = list.toArray(new Integer[0]);
+        Integer[] integerArray3 = list.toArray(new Integer[0]);
 
         // Arrays的静态方法toString()可以将数组转换为字符串
-        System.out.println(Arrays.toString(integerArray2));
+        System.out.println(Arrays.toString(integerArray3));
     }
 }
