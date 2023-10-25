@@ -56,8 +56,8 @@ public class CoreApplication {
 			System.out.println(i);
 		}
 
-		Integer[] coins = {1, 3};
-		Integer amount = 2;
+		Integer[] coins = {1, 2, 5};
+		Integer amount = 10;
 
 		System.out.println(CoinChange.minCoinsGreedy(coins, amount));
 

@@ -61,7 +61,7 @@ public class CoinChange {
         // 从大到小遍历硬币面值
         for (int coin : coins) {
             // 如果剩余金额大于等于当前硬币面值
-            while (remainingAmount >= coin) {
+            if (remainingAmount >= coin) {
                 // 剩余金额除以当前硬币面值，得到的商就是所需当前硬币的数量
                 coinCount += remainingAmount / coin;
                 // 余数就是剩余金额
@@ -77,5 +77,7 @@ public class CoinChange {
         // 在coin的for循环内执行返回，是为节省时间
         return 0;
     }
+    //DP算法的时间复杂度是O(n*amount)，空间复杂度是O(amount)，n是硬币面值的数量
+    //贪心算法的时间复杂度是O(n)，空间复杂度是O(1)，n是硬币面值的数量，如果要算是排序的时间复杂度是O(nlogn)
     
 }
