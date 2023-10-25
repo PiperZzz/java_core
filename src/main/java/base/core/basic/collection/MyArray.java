@@ -10,7 +10,7 @@ public class MyArray {
 
     /* int[]和Integer[]之间是无法Auto Boxing的 */
 
-    public static void arrayToList() {
+    public static void methodsFromArrays() {
         // 声明一个整数数组
         Integer[] integerArray = {1, 2, 3, 4, 5};
         
@@ -35,6 +35,19 @@ public class MyArray {
         integerArray2[2] = 3;
         integerArray2[3] = 4;
         integerArray2[4] = 5;
+
+        // Arrays的静态方法sort()可以对数组进行自然升序排序
+        Arrays.sort(integerArray2);
+
+        // Arrays的静态方法sort()可以对数组进行自定义排序，这里自定义Comparator为降序
+        // Comparator是一个函数式接口，可以用lambda表达式来实现
+        // lambda表达式的参数类型是Integer，所以这里的a和b都是Integer类型
+        // lambda表达式的返回值类型是int，所以这里返回a-b
+        // 但是自定义Comparator排序不能对基本类型数组进行排序，只能对引用类型数组进行排序
+        Arrays.sort(integerArray2, (a, b) -> b - a);
+
+        // Arrays的静态方法fill()可以将数组的所有元素填充为指定的值
+        Arrays.fill(integerArray2, 0);
         
         // toArray()方法参数中，引用类型是指定的目标数组类型，这里是Integer，[int]是目标数组的长度,这是0可以担保目标数组的长度和ArrayList的size一致
         // 如果指定数组的长度小于ArrayList的size，则会将数组的长度自动调整到可以装下ArrayList中的全部元素

@@ -1,6 +1,7 @@
 package base.core.leetcode.dp;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class CoinChange {
     public int minCoins(int[] coins, int amount) {
@@ -37,6 +38,35 @@ public class CoinChange {
     
         // 最后，返回 dp[amount] 的值，如果它仍然是无穷大，则表示无法找零，返回-1，否则返回最小硬币数量
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
+    }
+
+    // 如果面值组合是1和任意质数，那么就可以用贪心算法
+    // 硬币面值包含必须1，且其余面值都是质数，两个条件缺一不可
+    // 不然就会出现coins={2, 5} amount=6，却无法找零的情况
+    // 或者coins={1, 3，4} amount=6，却无法得到最优解的情况
+    public static Integer minCoinsGreedy(Integer[] coins, Integer amount) {
+        // Boundary Condition Check
+        if (coins == null || coins.length == 0 || amount < 0) {
+            return -1;
+        }
+
+        // 从大到小排序
+        Arrays.sort(coins, (a, b) -> b - a );
+
+        Integer count = 0;
+        Integer remainingAmount = amount;
+
+        for (int coin : coins) {
+            while (remainingAmount >= coin) {
+                count += remainingAmount / coin;
+                remainingAmount %= coin;
+                if (remainingAmount == 0) {
+                    return count;
+                }
+            }
+        }
+        
+        return 0;
     }
     
 }

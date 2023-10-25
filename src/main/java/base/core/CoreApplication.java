@@ -3,6 +3,9 @@ package base.core;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import base.core.basic.collection.MyArray;
+import base.core.leetcode.dp.CoinChange;
+
 public class CoreApplication {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
@@ -50,5 +53,10 @@ public class CoreApplication {
 		for (int i = 0; i < 10; i++) {
 			System.out.println(i);
 		}
+
+		Integer[] coins = {1, 3};
+		Integer amount = 2;
+
+		System.out.println(CoinChange.minCoinsGreedy(coins, amount));
 	}
 }
