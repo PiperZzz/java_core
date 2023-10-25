@@ -1,4 +1,4 @@
-package base.core.basic;
+package base.core.basic.classobject;
 
 public class MyString {
     String s = "Hello String"; //immutable, thread safe, high performance
