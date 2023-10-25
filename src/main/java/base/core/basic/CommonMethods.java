@@ -85,48 +85,6 @@ public class CommonMethods {
 
     }
 
-    public void mapMethods() {
-        Map<Character, Integer> map = new HashMap<>();
-        map.put('a', 1);
-        map.put('b', 1);
-        map.put('c', 1);
-
-        // get()方法的作用是：如果Map中包含这个key，则返回key对应的value，否则返回null
-        map.get('d');
-
-        // getOrDefault()方法的作用是：如果Map中包含这个key，则返回key对应的value，否则返回指定的默认值,这里是0
-        map.getOrDefault('d', 1);
-
-        // containsKey()方法的作用是：如果Map中包含这个key，则返回true，否则返回false
-        map.containsKey('d');
-
-        // containsValue()方法的作用是：如果Map中包含这个value，则返回true，否则返回false
-        map.containsValue(1);
-
-        // size()方法的作用是：返回Map中键值对的数量
-        map.size();
-
-        map.computeIfAbsent(null, null);
-
-        map.computeIfPresent(null, null);
-
-        map.remove('a');
-
-        map.clear();
-
-        map.put('a', 1);
-        map.put('b', 2);
-        map.put('c', 3);
-
-        Set<Character> keySet = map.keySet();
-        Collection<Integer> values = map.values();
-        Set<Map.Entry<Character, Integer>> entrySet = map.entrySet();
-
-        for (Map.Entry<Character, Integer> entry : entrySet) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        }
-    }
-
     public void collectionStreamMethods() {
         List<Integer> list = new ArrayList<>();
         Set<Integer> set = new HashSet<>();

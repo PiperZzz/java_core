@@ -11,6 +11,7 @@ public class TopKFrequentElements {
         // 使用哈希表记录每个元素的频率
         Map<Integer, Integer> frequencyMap = new HashMap<>();
         for (int num : nums) {
+            // 如果num存在，则返回num对应的出现的频率，否则返回默认值0
             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1); //将num的频率加1（num是key，频率是value）
         }
 
