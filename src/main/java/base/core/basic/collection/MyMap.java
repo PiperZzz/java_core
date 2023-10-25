@@ -7,6 +7,9 @@ import java.util.Set;
 
 public class MyMap {    
     public void mapMethods() {
+
+        /* Map不是Collection内的接口 */
+        
         Map<Character, Integer> map = new HashMap<>();
         
         map.put('a', 1);

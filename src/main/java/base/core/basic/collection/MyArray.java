@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MyArray {
+
+    /* Array不属于Collection，是一种独立的数据结构 */
+
     /* int[]和Integer[]之间是无法Auto Boxing的 */
 
     public static void arrayToList() {

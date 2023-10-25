@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class MyList {
+    /* List接口扩展自Collection接口 */
+
     // List is an ordered collection of elements
     // List allows duplicate elements
     // List is an interface
