@@ -1,7 +1,6 @@
 package base.core.leetcode.dp;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class CoinChange {
     public int minCoins(int[] coins, int amount) {

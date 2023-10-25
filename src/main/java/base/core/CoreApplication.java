@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import base.core.basic.collection.MyArray;
+import base.core.basic.collection.MySet;
 import base.core.leetcode.dp.CoinChange;
 
 public class CoreApplication {
@@ -58,5 +59,17 @@ public class CoreApplication {
 		Integer amount = 2;
 
 		System.out.println(CoinChange.minCoinsGreedy(coins, amount));
+
+		Integer integer = 1;
+		Integer integer2 = 1;
+		int i = 1;
+
+		System.out.println(integer == integer2);
+		System.out.println(integer == i);
+
+		System.out.println(integer.equals(integer2));
+		System.out.println(integer.equals(i));
+
+		MySet.setMethods();
 	}
 }

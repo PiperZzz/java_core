@@ -8,18 +8,6 @@ import java.util.Comparator;
 
 public class MyList {
     /* List接口扩展自Collection接口 */
-
-    // List is an ordered collection of elements
-    // List allows duplicate elements
-    // List is an interface
-    // ArrayList is a class that implements List interface
-    // ArrayList is not synchronized
-    // ArrayList is not thread safe
-    // ArrayList is a resizable array
-    // ArrayList is a dynamic array
-    
-    // ArrayList is a better choice if your program does not require a lot of insertion and deletion O(n)
-    // ArrayList is a better choice if your program requires random access to the list O(1)
     
     //声明空的ArrayList
     List<String> myList = new ArrayList<>();
@@ -33,33 +21,16 @@ public class MyList {
 
     // 这种声明的ArrayList是java.util.ArrayList，它的大小是可变的
     ArrayList<String> mutableArrayList = new ArrayList<>(Arrays.asList(array));
-
-
-
     
-    // ArrayList 常用构造函数
-    // ArrayList() - constructs an empty ArrayList
-    // ArrayList(Collection c) - constructs an ArrayList containing the elements of the specified collection
-    // ArrayList(int initialCapacity) - constructs an ArrayList with the specified initial capacity
-    // ArrayList<E> - constructs an empty ArrayList with the specified initial capacity
-    // ArrayList<E> - constructs an ArrayList containing the elements of the specified collection
-
 
     // ArrayList 常用方法
     // add() - add an element to the ArrayList
-    // addAll() - add all elements of a collection to the ArrayList
-    // get() - get an element from the ArrayList
-    // set() - update an element in the ArrayList
-    // remove() - remove an element from the ArrayList
-    // removeAll() - remove all elements of a collection from the ArrayList
-    // clear() - remove all elements of the ArrayList
     // size() - get the size of the ArrayList
     // contains() - check if the ArrayList contains an element
     // isEmpty() - check if the ArrayList is empty
     // indexOf() - get the index of the first occurrence of an element in the ArrayList
     // lastIndexOf() - get the index of the last occurrence of an element in the ArrayList
     // toArray() - convert an ArrayList to an array
-    // subList() - get a sublist from the ArrayList
 
     // sort() - sort the ArrayList
     public static void sortArrayList(List<String> myList) {
