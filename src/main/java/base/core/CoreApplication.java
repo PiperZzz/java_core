@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import base.core.basic.collection.MyArray;
+import base.core.basic.collection.MyList;
 import base.core.basic.collection.MySet;
 import base.core.leetcode.dp.CoinChange;
 
@@ -71,5 +72,7 @@ public class CoreApplication {
 		System.out.println(integer.equals(i));
 
 		MySet.setMethods();
+
+		MyList.listMethods();
 	}
 }

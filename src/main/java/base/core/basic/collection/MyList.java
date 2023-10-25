@@ -21,9 +21,46 @@ public class MyList {
 
     // 这种声明的ArrayList是java.util.ArrayList，它的大小是可变的
     ArrayList<String> mutableArrayList = new ArrayList<>(Arrays.asList(array));
-    
 
-    // ArrayList 常用方法
+    public static void listMethods() {
+        List<String> myList = new ArrayList<>(Arrays.asList("A", "B", "C"));
+
+        myList.add("D");
+
+        // add()方法的index参数不能大于ArrayList的size，否则会抛出IndexOutOfBoundsException异常
+        // 这里myList的size是4, 最后一个元素的index是3
+        myList.add(4, "E");
+
+        // 如果index小于myList的size，那么add()方法会将元素插入到指定的index位置，而不是替换指定index位置的元素
+        // 由于插入点后面的元素都会被移动，所以add()方法的时间复杂度是O(n)
+        myList.add(0, "F");
+
+        myList.set(0, "G");
+
+        myList.get(0);
+
+        myList.indexOf("G");
+
+        myList.lastIndexOf("G");
+
+        myList.remove(0);
+
+        myList.remove("D");
+
+        myList.addAll(Arrays.asList("F", "G"));
+
+        List<Integer> myList2 = new ArrayList<>(Arrays.asList(3, 0, 2, 1));
+
+        myList2.remove(1);
+
+        //在List的泛型是Integer的情况下，必须用Integer.valueOf()方法将int转换为Integer，否则方法会当作是指定index位置的元素
+        myList2.remove(Integer.valueOf(3));
+
+        System.out.println(myList2);
+    }
+
+    
+    
     // add() - add an element to the ArrayList
     // size() - get the size of the ArrayList
     // contains() - check if the ArrayList contains an element
