@@ -53,19 +53,29 @@ public class CoinChange {
         // 从大到小排序
         Arrays.sort(coins, (a, b) -> b - a );
 
-        Integer count = 0;
+        // 初始化硬币数量
+        Integer coinCount = 0;
+        
+        // 初始化剩余金额
         Integer remainingAmount = amount;
 
+        // 从大到小遍历硬币面值
         for (int coin : coins) {
+            // 如果剩余金额大于等于当前硬币面值
             while (remainingAmount >= coin) {
-                count += remainingAmount / coin;
+                // 剩余金额除以当前硬币面值，得到的商就是所需当前硬币的数量
+                coinCount += remainingAmount / coin;
+                // 余数就是剩余金额
                 remainingAmount %= coin;
+                // 如果剩余金额为0，说明已经找零完成，返回硬币数量
                 if (remainingAmount == 0) {
-                    return count;
+                    return coinCount;
                 }
             }
         }
         
+        // 由于硬币面值包含必须1，所以必然能找零，所以这个return永远不会被执行
+        // 在coin的for循环内执行返回，是为节省时间
         return 0;
     }
     
