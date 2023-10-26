@@ -32,6 +32,10 @@ public class TopKFrequentElements {
             // 所以这里，如果frequency不存在，则添加这个frequency为key和一个空列表为value，然后将num添加到这个空列表中
             // 如果frequency已经存在，则直接将num添加到这个frequency对应的列表中
             frequencyToListOfNumMap.computeIfAbsent(frequency, key -> new ArrayList<>()).add(num);
+            // 上面的代码等价于下面的代码
+            // frequencyToListOfNumMap.put(frequency, frequencyToListOfNumMap.getOrDefault(frequency, new ArrayList<>()));
+            // frequencyToListOfNumMap.get(frequency).add(num);
+
         }
 
         // 从高频率到低频率遍历TreeMap，获取Top K频率元素
