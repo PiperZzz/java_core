@@ -25,21 +25,22 @@ public class TopKFrequentElements {
         // 使用TreeMap，以frequencyMap中num出现的频率作为键，具有相同频率的num放入一个列表作为值
         TreeMap<Integer, List<Integer>> frequencyToListOfNumMap = new TreeMap<>();
         
-        for (int num : numToFrequencyMap.keySet()) {
-            int frequency = numToFrequencyMap.get(num);
-            if (!frequencyToListOfNumMap.containsKey(frequency)) {
-                frequencyToListOfNumMap.put(frequency, new ArrayList<>());
-            }
-            frequencyToListOfNumMap.get(frequency).add(num);
+        for (Map.Entry<Integer, Integer> entry : numToFrequencyMap.entrySet()) {
+            int frequency = entry.getValue();
+            int num = entry.getKey();
+            // computeIfAbsent()方法的作用是：如果Map中不包含这个key，则添加这个key和value，否则不做任何操作
+            // 所以这里，如果frequency不存在，则添加这个frequency为key和一个空列表为value，然后将num添加到这个空列表中
+            // 如果frequency已经存在，则直接将num添加到这个frequency对应的列表中
+            frequencyToListOfNumMap.computeIfAbsent(frequency, key -> new ArrayList<>()).add(num);
         }
 
         // 从高频率到低频率遍历TreeMap，获取Top K频率元素
         List<Integer> result = new ArrayList<>();
         while (result.size() < k) {
             // pollLastEntry()方法的作用是：返回并删除TreeMap中最后一个Entry，即最大的Entry
-            // TreeMap默认是按照Key的自然升序排序的，所以最后一个Entry就是最大的Entry
-            Map.Entry<Integer, List<Integer>> entry = frequencyToListOfNumMap.pollLastEntry();
-            result.addAll(entry.getValue());
+            // TreeMap默认是按照Key的自然升序排序的，所以最后一个Entry就是Key最大的Entry
+            Map.Entry<Integer, List<Integer>> entryOfLargestKey = frequencyToListOfNumMap.pollLastEntry();
+            result.addAll(entryOfLargestKey.getValue());
         }
 
         return result;
