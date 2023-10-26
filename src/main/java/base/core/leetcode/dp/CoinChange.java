@@ -9,33 +9,35 @@ public class CoinChange {
             return -1;
         }
 
-        // 创建一个整数数组 dp，用于存储每个金额所需的最小硬币数量
-        // dp[i] 表示金额 i 所需的最小硬币数量 - 这个值在计算过程中会不断动态更新
-        // dp[amount] 就是我们要求的结果
-        // dp 数组的长度为 amount + 1，因为 dp[0] 表示金额为 0 时所需的最小硬币数量
+        // 创建一个整数数组dp，用于存储每个金额所需的最小硬币数量
+        // dp[i] - index i表示当目标金额是i的时候，而dp[i]的值是目前找到所需的最小硬币数量，dp[i]的值会在遍历每个面值的硬币后更新一次
+        // dp[amount] 当index i达到目标amount的时候，且所有面值的硬币全部被遍历完，此时的dp[amount]值才是我们要求的结果
+        // dp数组的长度为amount + 1，因为dp[0]表示金额为0时所需的最小硬币数量
         int[] dp = new int[amount + 1];
     
-        // 将 dp 数组的所有元素初始化为整数的最大值，表示无穷大
+        // 将dp数组的所有元素初始化为整数的最大值，表示未更新过的状态，如果这个状态维持到最后，说明以此处index i为目标金额的时候，无法找零
         Arrays.fill(dp, Integer.MAX_VALUE);
     
-        // 初始化 dp 数组的第一个元素为0，因为凑成金额0不需要任何硬币
+        // 初始化dp数组的第一个元素为0，因为凑成金额0不需要任何硬币
         dp[0] = 0;
     
-        // 开始遍历硬币数组 coins 中的每一种硬币面值
+        // 开始遍历硬币数组coins中的每一种硬币面值，即外层循环，DP算法的硬币面值不需要排序
         // 在遍历Coin的面值这第一层循环中，一开始会出现某些位置的MAX_VALUE无法被已知的最小组合硬币数量+1取代的情况
         for (int coin : coins) {
-            // 在内层循环中，从当前硬币面值 coin 开始，遍历 dp 数组，直到目标金额 amount
+            // 在内层循环中，dp的index从当前硬币面值coin开始，遍历dp数组，直到index到达目标金额amount
             for (int i = coin; i <= amount; i++) {
-                // 检查如果使用当前硬币 coin 后，剩余金额 i - coin 不是无穷大
-                // 说明可以用之前的硬币组合凑成剩余金额 i - coin，那么 dp[i - coin] 就是凑成剩余金额 i - coin 的最小硬币数量
+                // 当前硬币面值为coin，随着dp的index i不断增加，dp[i - coin]的值是当少一个coin面值的硬币时，所需的最小硬币数量
+                // 如果dp[i - coin]的值是无穷大，说明少一个coin面值的硬币时，无法找零，那么dp[i]的值也是无穷大
                 if (dp[i - coin] != Integer.MAX_VALUE) {
-                    // 更新 dp[i]，将其设置为当前 dp[i] 和 dp[i - coin] + 1（使用当前硬币的最小硬币数量）中的较小值
+                    // 如果dp[i - coin]的值不是无穷大，说明少一个coin面值的硬币时，可以找零，那么dp[i]的值就是dp[i - coin]的值加1
+                    // 在遍历第一个面值的硬币时，dp[i]的值一定会被初始化为dp[i - coin]的值加1
+                    // 但是在后面其它面值遍历的过程中，dp[i]的值可能会被更小的dp[i - coin‘]+1、[i - coin‘’]+1取代
                     dp[i] = Math.min(dp[i], dp[i - coin] + 1);
                 }
             }
         }
     
-        // 最后，返回 dp[amount] 的值，如果它仍然是无穷大，则表示无法找零，返回-1，否则返回最小硬币数量
+        // 最后，返回dp[amount]的值，如果它仍然是无穷大，则表示无法找零，返回-1，否则返回最小硬币数量
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
 
@@ -78,6 +80,5 @@ public class CoinChange {
         return 0;
     }
     //DP算法的时间复杂度是O(n*amount)，空间复杂度是O(amount)，n是硬币面值的数量
-    //贪心算法的时间复杂度是O(n)，空间复杂度是O(1)，n是硬币面值的数量，如果要算是排序的时间复杂度是O(nlogn)
-    
+    //贪心算法的时间复杂度是O(n)+O(nlog n)=O(nlog n)，空间复杂度是O(1)，n是硬币面值的数量，O(nlog n)是排序的时间复杂度
 }
