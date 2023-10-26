@@ -10,6 +10,9 @@ public class MyArray {
 
     /* int[]和Integer[]之间是无法Auto Boxing的 */
 
+    // 这个new int[]是在堆上创建了一个数组对象，然后将这个数组对象的引用赋值给intArray
+    int[] intArray = new int[]{1, 2, 3, 4, 5};
+
     public static void methodsFromArrays() {
         // 声明一个整数数组
         Integer[] integerArray = {1, 2, 3, 4, 5};
