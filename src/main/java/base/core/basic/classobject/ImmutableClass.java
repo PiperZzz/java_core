@@ -17,7 +17,7 @@ public final class ImmutableClass<T> {
         // 当任何方法尝试修改不可变视图时，会抛出UnsupportedOperationException异常
     }
 
-    // 不提供任何Setter性质的方法
+    // 不能提供任何Setter性质的方法，只提供Getter方法
     public Collection<T> getData() {
         return data;
     }
