@@ -12,8 +12,8 @@ public class MaxProfit {
         // 初始化最大利润为0
         int maxProfit = 0;
         
-        // 这种遍历方式维持了每一个价格出现的时间顺序，这点非常重要
-        // 因为只有这样才能保证最低股价在最大利润之前出现
+        /* 这种遍历方式维持了每一个价格出现的时间顺序，这点非常重要
+        因为只有这样才能保证最低股价在最大利润之前出现 */
         for (int price : prices) {
             // 更新最低股价
             minPrice = Math.min(minPrice, price);

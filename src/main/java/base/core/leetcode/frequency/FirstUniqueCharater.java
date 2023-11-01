@@ -18,8 +18,8 @@ public class FirstUniqueCharater {
         
         // 遍历字符串并统计每个字符的出现次数
         for (char c : chars) {
-            // 把char c作为key，把出现次数作为value，存入HashMap
-            // getOrDefault()方法的作用是：如果Map中包含这个key，则返回key对应的value，否则返回指定的默认值,这里是0
+            /* 把char c作为key，把出现次数作为value，存入HashMap
+            getOrDefault()方法的作用是：如果Map中包含这个key，则返回key对应的value，否则返回指定的默认值,这里是0 */
             charCount.put(c, charCount.getOrDefault(c, 0) + 1);
         }
         

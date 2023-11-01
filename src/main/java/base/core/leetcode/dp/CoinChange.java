@@ -9,10 +9,10 @@ public class CoinChange {
             return -1;
         }
 
-        // 创建一个整数数组dp，用于存储每个金额所需的最小硬币数量
-        // dp[i] - index i表示当目标金额是i的时候，而dp[i]的值是目前找到所需的最小硬币数量，dp[i]的值会在遍历每个面值的硬币后更新一次
-        // dp[amount] 当index i达到目标amount的时候，且所有面值的硬币全部被遍历完，此时的dp[amount]值才是我们要求的结果
-        // dp数组的长度为amount + 1，因为dp[0]表示金额为0时所需的最小硬币数量
+        /* 创建一个整数数组dp，用于存储每个金额所需的最小硬币数量
+        dp[i] - index i表示当目标金额是i的时候，而dp[i]的值是目前找到所需的最小硬币数量，dp[i]的值会在遍历每个面值的硬币后更新一次
+        dp[amount] 当index i达到目标amount的时候，且所有面值的硬币全部被遍历完，此时的dp[amount]值才是我们要求的结果
+        dp数组的长度为amount + 1，因为dp[0]表示金额为0时所需的最小硬币数量 */
         int[] dp = new int[amount + 1];
     
         // 将dp数组的所有元素初始化为整数的最大值，表示未更新过的状态，如果这个状态维持到最后，说明以此处index i为目标金额的时候，无法找零
@@ -41,10 +41,10 @@ public class CoinChange {
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
 
-    // 如果面值组合是1和任意质数，那么就可以用贪心算法
-    // 硬币面值包含必须1，且其余面值都是质数，两个条件缺一不可
-    // 不然就会出现coins={2, 5} amount=6，却无法找零的情况
-    // 或者coins={1, 3，4} amount=6，却无法得到最优解的情况
+    /* 如果面值组合是1和任意质数，那么就可以用贪心算法
+    硬币面值包含必须1，且其余面值都是质数，两个条件缺一不可
+    不然就会出现coins={2, 5} amount=6，却无法找零的情况
+    或者coins={1, 3，4} amount=6，却无法得到最优解的情况 */
     public static Integer minCoinsGreedy(Integer[] coins, Integer amount) {
         // Boundary Condition Check
         if (coins == null || coins.length == 0 || amount < 0) {
