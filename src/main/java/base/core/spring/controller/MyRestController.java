@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController // @RestController注解相当于@Controller和@ResponseBody注解的结合。
 public class MyRestController {
 
-    @Autowired
-    private ResourceService resourceService;
+    // @Autowired
+    // private ResourceService resourceService;
 
     
     @GetMapping("/api/resource")
@@ -53,11 +53,11 @@ public class MyRestController {
         return ResponseEntity.ok("Resource created with data: " + resourceDTO);
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        // 处理资源未找到异常
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource not found: " + ex.getMessage());
-    }
+    // @ExceptionHandler(ResourceNotFoundException.class)
+    // public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
+    //     // 处理资源未找到异常
+    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource not found: " + ex.getMessage());
+    // }
 
 
 }
