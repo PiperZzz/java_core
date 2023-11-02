@@ -1,24 +1,13 @@
 package base.core.basic.system_desgin.parking_lot;
 
 public class Constants {
-    enum CarType {
+    public enum VehicleType {
         MOTORCYCLE,
         CAR,
         VAN
     }
 
-    enum ParkingLotSpotType {
-        MOTORCYCLE,
-        CAR,
-        LARGE
-    }
-
-    enum CarParkingLotSpotType {
-        COMPACT,
-        REGULAR
-    }
-
-    enum ParkingLotSpotStatus {
+    public enum ParkingSpotStatus {
         FREE,
         OCCUPIED
     }
