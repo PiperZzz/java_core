@@ -2,7 +2,7 @@ package base.core.basic.system_desgin.parking_lot;
 
 // 停车位类是必须有的
 // 一个停车位可能会容纳多种不同车辆的逻辑，决定了车辆类和停车位类之间是Many-to-One关系
-public class ParkingSpot {
+public class ParkingSpot implements Comparable<ParkingSpot> {
     private final ParkingSpotType parkingSpotType;
 
     // 这种设计是假设如果一个Parking Spot被任何一种车辆占用，就不能再被其他车辆占用
@@ -34,4 +34,10 @@ public class ParkingSpot {
     public boolean isSpotAvailable() {
         return this.vehicle == null;
     }
+
+    @Override
+    public int compareTo(ParkingSpot parkingSpot) {
+        // 这里需要一个按照停车位大小排序的逻辑，因为题目要求摩托车优先停在最小的停车位
+        return this.parkingSpotType.getSpotCount() - parkingSpot.getParkingSpotType().getSpotCount();
+    }   
 }
