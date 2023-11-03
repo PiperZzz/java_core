@@ -1,4 +1,4 @@
-package base.core.basic.system_desgin.parking_lot;
+package base.core.basic.ood.parking;
 
 import java.util.Arrays;
 

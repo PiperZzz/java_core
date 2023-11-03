@@ -1,4 +1,4 @@
-package base.core.basic.system_desgin.parking_lot;
+package base.core.basic.ood.parking;
 
 // 停车位类是必须有的
 // 一个停车位可能会容纳多种不同车辆的逻辑，决定了车辆类和停车位类之间是Many-to-One关系

@@ -1,4 +1,4 @@
-package base.core.basic.system_desgin.parking_lot;
+package base.core.basic.ood.parking;
 
 /* 车辆类是必须有的
 如果车辆种类过于庞杂，可以用abstract把Vehicle基类，再延申出子类型 */

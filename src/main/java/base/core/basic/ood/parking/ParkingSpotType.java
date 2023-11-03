@@ -1,4 +1,4 @@
-package base.core.basic.system_desgin.parking_lot;
+package base.core.basic.ood.parking;
 
 // 假设Spot是最小空间单元，Motorcycle占用1和Compact Car占用2，Regular Car占用3个，Van占用3个Regular Car的空间
 // 这种量化是为了简化判断逻辑
