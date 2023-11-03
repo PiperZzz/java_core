@@ -39,6 +39,20 @@ public class MyArray {
         integerArray2[3] = 4;
         integerArray2[4] = 5;
 
+        // Arrays的静态方法asList()可以将数组转换为List
+        // 它可以接受两种类型参数，要么是一个数组，要么是多个元素，或者无参数
+        // 如果参数是一个数组，那么返回的List是Array的一个视图，不是java.util.ArrayList
+        List<Integer> asList2 = Arrays.asList(integerArray2);
+        // 如果参数是多个元素，那么返回的List是java.util.ArrayList
+        List<Integer> asList3 = Arrays.asList(1, 2, 3, 4, 5);
+        // 如果参数是无参数，那么返回的List是一个空的java.util.ArrayList
+        List<Integer> asList4 = Arrays.asList();
+
+        // Arrays的静态方法copyOf()可以将数组复制到一个新的数组中
+        // 第二个参数是新数组的长度，如果新数组的长度小于原数组的长度，则只会复制原数组的前n个元素
+        // 如果新数组的长度大于原数组的长度，则会在新数组的后面填充null
+        Integer[] integerArrayCopy = Arrays.copyOf(integerArray2, 10);
+
         // Arrays的静态方法sort()可以对数组进行自然升序排序
         Arrays.sort(integerArray2);
 
