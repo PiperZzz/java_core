@@ -34,6 +34,7 @@ public class MyStream {
 
         // 在Java 11以后，var可以用在lambda表达式的参数上，相比无类型参数的一个优势：可以用@NotNull注解来标记参数不为null
         myList.forEach((@NonNull var s) -> System.out.println(s));
+        myMap.forEach((@NonNull var k, @NonNull var v) -> System.out.println(k + " " + v));
     }
 
     public static void filterMehod() {
