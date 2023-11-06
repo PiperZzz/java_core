@@ -37,9 +37,17 @@ public class MyStream {
         myMap.forEach((@NonNull var k, @NonNull var v) -> System.out.println(k + " " + v));
     }
 
+    /* stream()方法返回Stream<T>类型对象，T是调用stream()方法的集合对象泛型
+    * filter()方法的参数是一个Predicate<T>函数式接口，通过实现Predicate<T>接口的test()方法来实现过滤规则
+    * Functional Interface（函数式接口）只有一个抽象方法，对于这个方法的实现（通常是lambda表达式）就是一种行为逻辑的实现
+    */
     public static void filterMehod() {
-        ArrayList<String> myList = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"));
+        ArrayList<String> myList = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
 
-        myList.stream().filter(s -> s.compareTo("F") > 0).forEach(s -> System.out.println(s));
+        /* filter()方法的参数就是为实现过滤规则而存在的
+         * Lambda表达式就是这种逻辑规则的实际
+         * 这里的规则是：只要比B“大”的元素就被视为通过测试而被保留下来
+         */
+        myList.stream().filter(s -> s.compareTo("B") > 0).forEach(s -> System.out.println(s));
     }
 }
