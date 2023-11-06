@@ -45,7 +45,7 @@ public class MyStream {
         ArrayList<String> myList = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
 
         /* filter()方法的参数就是为实现过滤规则而存在的
-         * Lambda表达式就是这种逻辑规则的实际
+         * Lambda表达式就是对逻辑规则抽象方法Test()的实现，只要Test()方法（实现）返回True就会被认为通过测试而被保留下来
          * 这里的规则是：只要比B“大”的元素就被视为通过测试而被保留下来
          */
         myList.stream().filter(s -> s.compareTo("B") > 0).forEach(s -> System.out.println(s));
