@@ -14,8 +14,11 @@ public class MyStream {
         Stack<String> myStack = new Stack<>();
         myStack.addAll(Arrays.asList("A", "B", "C", "D"));
         
-        /* forEach()方法是Java8中新增的方法, 由于它是Iterable接口地默认方法，而Collection继承了Iterable接口，所以List、Set、Queue、Deque、Stack都可以调用forEach()方法
-        Iterable接口中forEach()方法的参数是一个Consumer接口，Consumer接口是一个函数式接口（Functional Interface），它的抽象方法是accept()方法 */
+        /* forEach()方法是Iterable接口地默认方法，而Collection继承了Iterable接口
+         * 所以List、Set、Queue、Deque、Stack都可以调用forEach()方法
+         * Iterable接口中forEach()方法的参数是一个Consumer接口
+         * Consumer接口是一个函数式接口（Functional Interface）
+         * 它的抽象方法是accept()方法 */
         myList.forEach(s -> System.out.println(s));
         mySet.forEach(s -> System.out.println(s));
         myQueue.forEach(s -> System.out.println(s));
