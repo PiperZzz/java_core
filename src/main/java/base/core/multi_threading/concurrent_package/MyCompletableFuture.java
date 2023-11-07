@@ -6,16 +6,19 @@ import java.util.concurrent.ExecutionException;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+/* CompletableFuture的一个重要特性是
+* 它可以将多个CompletableFuture串联起来
+* 组合成一个新的CompletableFuture
+* 以便处理异步任务之间的依赖关系
+* 无论是以前的Future接口，还是Spring的@Async都难以完成这类复合异步任务
+*/
 @Service
 public class MyCompletableFuture {
-    /* CompletableFuture的一个重要特性是
-    它可以将多个CompletableFuture串联起来
-    组合成一个新的CompletableFuture
-    以便处理异步任务之间的依赖关系
-    无论是以前的Future接口，还是Spring的@Async都难以完成这种复合任务 */
-
-    /*  */
+    /* InterruptedException
+     * ExecutionException
+     */
     public static void exmapleCompletableFuture() throws InterruptedException, ExecutionException {
+        
         CompletableFuture<String> service1 = CompletableFuture.supplyAsync(() -> callService1());
         CompletableFuture<String> service2 = CompletableFuture.supplyAsync(() -> callService2());
         CompletableFuture<String> service3 = CompletableFuture.supplyAsync(() -> callService3());
