@@ -1,11 +1,16 @@
 package base.core.basic.classobject;
 
 public class MyString {
-    String s = "Hello String"; //immutable, thread safe, high performance
+    /* String的immutable指的是它引用（Reference）的内容（Content）无法修改，即便可以重新赋值也只是更改内容的引用
+     * 所以这种immutablility自动就是thread safe */
+    String str = "Hello String";
 
-    StringBuffer sb = new StringBuffer("Hello String Buffer"); // thread safe, synchronized, low performance
-    StringBuilder sb2 = new StringBuilder("Hello String Builder");  // not thread safe, not synchronized, high performance
-    // SQL query is good practice for StringBuffer and StringBuilder
+    /* 不考虑线程安全，推荐使用StringBuilder */
+    StringBuilder stringBuilder = new StringBuilder("Hello String Builder"); 
+
+    /* 由于要考虑线程安全，推荐使用StringBuffer，但性能下降 */
+    StringBuffer stringBuffer = new StringBuffer("Hello String Buffer"); 
+    /* SQL query is good practice for StringBuffer and StringBuilder */
 
 
     public static void stringCompare() {
