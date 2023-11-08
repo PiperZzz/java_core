@@ -41,33 +41,20 @@ public class MyMap {
         hashMap.computeIfAbsent(null, null);
 
         hashMap.computeIfPresent(null, null);
-
-        Set<Map.Entry<Character, Integer>> entrySet = hashMap.entrySet();
-
-        for (Map.Entry<Character, Integer> entry : entrySet) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        }
     }
 
-    public void entrySetTraverse() {
-        Map<String, String> hashMap = new HashMap<>();
+    public void mapTraverse() {
+        Map<String, Integer> hashMap = new HashMap<>();
 
-        for (Map.Entry<String, String> entry : hashMap.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        }
-    }
-    
-    public void keySetTraverse() {
-        Map<String, String> hashMap = new HashMap<>();
-
-        for (String key : hashMap.keySet()) {
-            System.out.println(key + " " + hashMap.get(key));
-        }
-    }
-
-    public void forEachTraverse() {
-        Map<String, String> hashMap = new HashMap<>();
-
+        /* Java 8 以后就不再推荐除Entry<K, V>以外的任何传统遍Map历方式了 */
         hashMap.forEach((k, v) -> System.out.println((k + " " + v)));
+
+        /* Entry<K, V>是Map内部类，这种遍历方式在以下两种情况下是必须的：
+         * 1. 需要遍历的同时修改键值对，Stream API无法完成这种操作
+         * 2. 需要按某种特定顺序遍历
+         */
+        for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
     }
 }
