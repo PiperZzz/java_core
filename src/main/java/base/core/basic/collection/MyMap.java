@@ -11,11 +11,11 @@ public class MyMap {
         /* Map不是Collection内的接口 */
         
         Map<String, Integer> hashMap = new HashMap<>();
-        
+
+        hashMap.put("a", 1);
         /* 如果Map中不包含这个key, 则添加这对key和value，并返回null
          * 如果Map中包含这个key，则覆盖原有的value，并返回旧值（原有的value）
          */
-        hashMap.put("a", 1);
         hashMap.put("b", 1);
         hashMap.put("c", 1);
 
@@ -31,8 +31,10 @@ public class MyMap {
          */
         hashMap.getOrDefault("d", 1);
 
+
         /* 如果Map中包含这个key，则返回key对应的value，否则返回null */
         hashMap.get("d");
+
 
         /* 如果Map中不包含这个key，则添加这对key和value，并返回null
          * 如果Map中包含这个key，则不对Map做任何操作，并直接返回key对应的value
@@ -41,9 +43,15 @@ public class MyMap {
          */
         hashMap.putIfAbsent("d", 1);
 
-        /* 该 */
+
+        /* 该方法和putIfAbsent()相似的地方是：都在key不存在时添加key和value
+         * 但不同是：1、第二个参数允许函数式接口，执行一个和Key相关的操作，返回一个Value
+         * 2、key不存在则添加key和计算过的value，这里和putIfAbsent不同，它会返回新值（计算后的value），而不是旧值null
+         * 如果key存在则不会有任何操作，也不返回任何值，注意这点也和putIfAbsent()不同，putIfAbsent()在key存在时会返回旧值
+         */
         hashMap.computeIfAbsent("d", key-> key.length());
 
+        /*  */
         hashMap.computeIfPresent(null, null);
 
         // containsKey()方法的作用是：如果Map中包含这个key，则返回true，否则返回false
