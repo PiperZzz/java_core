@@ -10,37 +10,50 @@ public class MyMap {
 
         /* Map不是Collection内的接口 */
         
-        Map<Character, Integer> hashMap = new HashMap<>();
+        Map<String, Integer> hashMap = new HashMap<>();
         
-        hashMap.put('a', 1);
-        hashMap.put('b', 1);
-        hashMap.put('c', 1);
+        /* 如果Map中不包含这个key, 则添加这对key和value，并返回null
+         * 如果Map中包含这个key，则覆盖原有的value，并返回旧值（原有的value）
+         */
+        hashMap.put("a", 1);
+        hashMap.put("b", 1);
+        hashMap.put("c", 1);
 
-        Set<Character> keySet = hashMap.keySet();
+        /*  */
+        Set<String> keySet = hashMap.keySet();
         
+        /*  */
         Collection<Integer> values = hashMap.values();
 
-        // get()方法的作用是：如果Map中包含这个key，则返回key对应的value，否则返回null
-        hashMap.get('d');
+        /* 如果Map中包含这个key，则返回key对应的value，否则返回指定的默认值（这里是1）
+         * 注意：这个默认值并不会对Map中的键值对产生任何影响
+         * 如果默认值是null，则这个方法的作用和get()完全方法一样
+         */
+        hashMap.getOrDefault("d", 1);
 
-        // getOrDefault()方法的作用是：如果Map中包含这个key，则返回key对应的value，否则返回指定的默认值,这里是0
-        hashMap.getOrDefault('d', 1);
+        /* 如果Map中包含这个key，则返回key对应的value，否则返回null */
+        hashMap.get("d");
+
+        /* 如果Map中不包含这个key，则添加这对key和value，并返回null
+         * 如果Map中包含这个key，则不对Map做任何操作，并直接返回key对应的value
+         * 它和put()方法的区别是：put()方法会覆盖原有的value，而putIfAbsent()不会
+         * 它们在返回值的逻辑上是一致的，都是key存在返回旧值，key不存在返回null
+         */
+        hashMap.putIfAbsent("d", 1);
+
+        /* 该 */
+        hashMap.computeIfAbsent("d", key-> key.length());
+
+        hashMap.computeIfPresent(null, null);
 
         // containsKey()方法的作用是：如果Map中包含这个key，则返回true，否则返回false
-        hashMap.containsKey('d');
+        hashMap.containsKey("d");
 
         // containsValue()方法的作用是：如果Map中包含这个value，则返回true，否则返回false
         hashMap.containsValue(1);
 
-        // size()方法的作用是：返回Map中键值对的数量
-        hashMap.size();
-
-        // putIfAbsent()方法的作用是：如果Map中不包含这个key，则添加这个key和value，否则不做任何操作
-        hashMap.putIfAbsent('d', 1);
-
-        hashMap.computeIfAbsent(null, null);
-
-        hashMap.computeIfPresent(null, null);
+        // 返回Map中键值对（Entry）的数量
+        hashMap.size();        
     }
 
     public void mapTraverse() {
