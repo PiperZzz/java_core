@@ -28,10 +28,30 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- Spring的Web框架必要的依赖，很多包和下面的注解都依赖于 -->
+		<!-- Spring Boot的Web框架必要依赖，很多包和下面的注解都依赖于此 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Spring Boot的JPA框架必要依赖，很多包和下面的注解都依赖于此 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- Spring Boot的JPA框架必要依赖，数据库驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
+			<!-- 如果没有版本号，会有security vulnerabilities报警 -->
+		</dependency>
+
+		<!-- Spring Boot的JPA框架推荐依赖，数据库连接池 -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
 		</dependency>
 
 		<dependency>
