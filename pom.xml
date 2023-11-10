@@ -49,6 +49,7 @@
 		</dependency>
 
 		<!-- Spring Boot的JPA框架推荐依赖，数据库连接池 -->
+		<!-- 如不显式配置数据库连接池，数据库似乎也可以连接，这里不同的GPT说法有冲突，有说依赖会从数据库驱动隐式引入，有说依赖会从jpa依赖隐式引入 -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
