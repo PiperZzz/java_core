@@ -35,17 +35,35 @@
 		</dependency>
 
 		<!-- Spring Boot的JPA框架必要依赖，很多包和下面的注解都依赖于此 -->
+		<!-- JPA相较于JDBC优势在于：实现简单的CRUD更方便直观 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- Spring Boot的JPA框架必要依赖，数据库驱动 -->
+		<!-- Spring Boot的JDBC框架必要依赖，很多包和下面的注解都依赖于此 -->
+		<!-- JDBC相较于JPA有更加灵活精准的SQL语句控制 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+		</dependency>
+
+		<!-- Spring Boot的数据库连接必要依赖：数据库驱动，这里以MySQL为例 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 			<!-- 如果没有版本号，会有security vulnerabilities报警 -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 		<!-- Spring Boot的JPA框架推荐依赖，数据库连接池 -->
