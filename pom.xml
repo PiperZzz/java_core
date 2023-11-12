@@ -28,49 +28,51 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- Spring Boot的Web框架必要依赖，很多包和下面的注解都依赖于此 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot的Web框架必要依赖 -->
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Spring Boot的JPA框架必要依赖，很多包和下面的注解都依赖于此 -->
-		<!-- JPA相较于JDBC优势在于：实现简单的CRUD更方便直观 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot的JPA框架必要依赖 -->
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<!-- JPA相较于JDBC优势在于实现简单的CRUD更方便直观 -->
 		</dependency>
 
-		<!-- Spring Boot的JDBC框架必要依赖，很多包和下面的注解都依赖于此 -->
-		<!-- JDBC相较于JPA有更加灵活精准的SQL语句控制 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot的JDBC框架必要依赖 -->
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+			<!-- JDBC相较于JPA有更加灵活精准的SQL语句控制 -->
 		</dependency>
-
-		<!-- Spring Boot的数据库连接必要依赖：数据库驱动，这里以MySQL为例 -->
+		
 		<dependency>
 			<groupId>mysql</groupId>
+			<!-- Spring Boot的数据库连接必要数据库驱动依赖（这里以MySQL为例） -->
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 			<!-- 如果没有版本号，会有security vulnerabilities报警 -->
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot的MongoDB必要依赖 -->
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot的Redis必要依赖 -->
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
-		<!-- Spring Boot的JPA框架推荐依赖，数据库连接池 -->
-		<!-- 如不显式配置数据库连接池，数据库似乎也可以连接，这里不同的GPT说法有冲突，有说依赖会从数据库驱动隐式引入，有说依赖会从jpa依赖隐式引入 -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
+			<!-- Spring Boot的JPA框架推荐依赖，数据库连接池 -->
 			<artifactId>HikariCP</artifactId>
+			<!-- 如不显式配置数据库连接池，数据库似乎也可以连接，这里不同的GPT说法有冲突，有说依赖会从数据库驱动隐式引入，有说依赖会从jpa依赖隐式引入 -->
 		</dependency>
 
 		<dependency>
