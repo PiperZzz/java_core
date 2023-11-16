@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.Async;
  */
 public class MyCompletableFuture {
     /* InterruptedException：通常在线程被意外中断时发生，不包含任何cause，自己本身就是异常的cause
-     * 如果方法不抛出InterruptedException，编译器会强制要求在调用回调函数get()时，用catch语句中处理这个异常
+     * 如果方法不抛出InterruptedException，编译器会强制要求在调用get()时，用catch语句中处理这个异常
      * ExecutionException：一般会发生在被要求被异步执行的方法内部，发生的异常会被包装向上抛出，通常用getCause()方法获取到原始的异常
      */
     public static void parallelCompletableFuture() throws InterruptedException, ExecutionException {
@@ -23,7 +23,7 @@ public class MyCompletableFuture {
          * 这个动作实际上有两步：1、将callService1()推入异步状态；2、成功之后立即返回一个状态未知的CompletableFuture对象service1来跟踪callService1()的执行结果。
          * 理论上，这两步之间是可以被打断的，但实际上supplyAsync()方法的执行完整性是非常可信的  
          * 由于supplyAsync()方法是一个非阻塞方法，意味着它会立即返回，而不会等待外部服务的调用完成，所以此时CompletableFuture对象service1的状态必然是未知的
-         * 它等待着后续get()（或join()）阻塞方法的调用来确定自己的状态
+         * 它等待着后续get()或join()阻塞方法的调用来确定自己的状态
          */
         CompletableFuture<String> service2 = CompletableFuture.supplyAsync(() -> callService2());
         CompletableFuture<String> service3 = CompletableFuture.supplyAsync(() -> callService3());
