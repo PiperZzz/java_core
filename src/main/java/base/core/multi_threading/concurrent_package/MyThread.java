@@ -138,11 +138,11 @@ public class MyThread extends Thread {
         * 在这里可以执行其他任务，不会阻塞主线程 
         */
 
-        completableFuture.join(); // 可选：阻塞主线程，等待异步任务完成
+        /* 原则上不调用completableFuture.join()，因为runAsync()目的就是不关心异步任务的执行结果 */
     }
 
     /* 用CompletableFuture，完成相同的任务，同时还可以提供非阻塞方法等待回调结果 */
-    public static void asyncTaskCompletableFuture() throws InterruptedException, ExecutionException {
+    public static void asyncTaskCompletableFutureThenAccept() throws InterruptedException, ExecutionException {
         ExecutorService localCustomThreadPoolByExecutorService = Executors.newFixedThreadPool(3);
         
         CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> callExternalService(), localCustomThreadPoolByExecutorService);
