@@ -1,6 +1,9 @@
 package base.core.multi_threading.concurrent_package;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,7 +15,7 @@ public class MyThread extends Thread {
     /* 用CompletableFuture如果不显式手动配置线程池，那么会使用系统默认的ForkJoinPool，这个线程池可以被多个CompletableFuture共享
      * 如果用extends Thread的方式，根本不会用到线程池，而是直接创建一个新线程
      */
-    private static ExecutorService customThreadPool = Executors.newFixedThreadPool(3);
+    private static ExecutorService customThreadPoolByExecutorService = Executors.newFixedThreadPool(3);
 
     public MyThread(Callback callback) {
         this.callback = callback;
@@ -30,7 +33,7 @@ public class MyThread extends Thread {
     }
 
     /* 用extends Thread的方式，手动分配新线程一个异步执行的外部服务 */
-    public static void asyncTaskExtendsThread() throws InterruptedException {
+    public static void asyncTaskExtendsThread() throws InterruptedException, ExecutionException {
         MyThread myThread = new MyThread(result -> {
             /* 在回调函数中处理callService1()的结果 */
             System.out.println("Result: " + result);
@@ -49,9 +52,35 @@ public class MyThread extends Thread {
         }
     }
 
+    public static void aysncCallableFutrue() throws InterruptedException, ExecutionException {
+        Callable<String> callableTask = () -> callExternalService();
+
+        Callable<String> callableTask1 = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return callExternalService();
+            }
+        };
+
+        Future<String> future = customThreadPoolByExecutorService.submit(callableTask);
+
+        String result = future.get(); // 阻塞主线程，等待异步任务完成并获取结果
+
+        System.out.println("Result: " + result);
+    }
+
+    public static void asyncRunnable() throws InterruptedException {
+        Runnable runnableTask = () -> callExternalService();
+
+        customThreadPoolByExecutorService.submit(runnableTask);
+
+        // 关闭线程池
+        customThreadPoolByExecutorService.shutdown();
+    }
+
     /* 用CompletableFuture，完成相同的任务 */
-    public static void asyncTaskCompletableFuture() throws InterruptedException {
-        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> callExternalService(), customThreadPool);
+    public static void asyncTaskCompletableFuture() throws InterruptedException, ExecutionException {
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> callExternalService(), customThreadPoolByExecutorService);
 
         /* 
         * 在这里可以执行其他任务，不会阻塞主线程 
@@ -63,8 +92,8 @@ public class MyThread extends Thread {
     }
 
     /* 用CompletableFuture，完成相同的任务，同时还可以提供非阻塞方法等待回调结果 */
-    public static void asyncTaskCompletableFuture2() throws InterruptedException {
-        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> callExternalService(), customThreadPool);
+    public static void asyncTaskCompletableFuture2() throws InterruptedException, ExecutionException {
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> callExternalService(), customThreadPoolByExecutorService);
 
         /* 
         * 在这里可以执行其他任务，不会阻塞主线程 
