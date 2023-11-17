@@ -12,6 +12,7 @@ public class MyCompletableFuture {
     /* InterruptedException：通常在线程被意外中断时发生，不包含任何cause，自己本身就是异常的cause
      * 如果方法不抛出InterruptedException，编译器会强制要求在调用get()时，用catch语句中处理这个异常
      * ExecutionException：一般会发生在被要求被异步执行的方法内部，发生的异常会被包装向上抛出，通常用getCause()方法获取到原始的异常
+     * 如果方法不抛出ExecutionException，编译器会强制要求在调用get()时，用catch语句中处理这个异常
      */
     public static void parallelCompletableFuture() throws InterruptedException, ExecutionException {
         /* 创建三个CompletableFuture对象，每个代表一个外部服务的调用

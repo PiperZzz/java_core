@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Supplier;
 
 public class MyThread extends Thread {
 
@@ -163,6 +164,18 @@ public class MyThread extends Thread {
          * 而Callable和Runnable必须手动指定线程池，否则就会使用默认的单一线程池，这样就必须手动管理线程池的生命周期
          */
         localCustomThreadPoolByExecutorService.shutdown();
+    }
+
+    public static String asyncService(Supplier<String> externalServiceCall) throws InterruptedException, ExecutionException {
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(externalServiceCall);
+
+        return completableFuture.get();
+    }
+
+    public static <T> T asyncServiceT(Supplier<T> externalServiceCall) throws InterruptedException, ExecutionException {
+        CompletableFuture<T> completableFuture = CompletableFuture.supplyAsync(externalServiceCall);
+
+        return completableFuture.get();
     }
 
     private static String callExternalService() {
