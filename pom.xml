@@ -37,6 +37,13 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot几乎必须要有的安全依赖 -->
+			<!-- 很多功能都依赖它，比如TODO -->
+			<artifactId>spring-boot-starter-security</artifactId>
+    	</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<!-- Spring Boot的JPA框架必要依赖 -->
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<!-- JPA相较于JDBC优势在于实现简单的CRUD更方便直观 -->
@@ -75,6 +82,32 @@
 			<artifactId>HikariCP</artifactId>
 			<!-- 如不显式配置数据库连接池，数据库似乎也可以连接，这里不同的GPT说法有冲突，有说依赖会从数据库驱动隐式引入，有说依赖会从jpa依赖隐式引入 -->
 		</dependency>
+
+		<!-- HAPI HL7 V2库的依赖 -->
+		<dependency>
+			<groupId>ca.uhn.hapi</groupId>
+			<artifactId>hapi-base</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+		<!-- HAPI HL7 FHIR库的依赖 -->
+		<dependency>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>hapi-fhir-base</artifactId>
+			<version>5.5.0</version>
+		</dependency>
+
+		<!-- <dependency>
+			<groupId>ca.uhn.hapi</groupId>
+			<artifactId>hapi-hl7v2</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ca.uhn.hapi</groupId>
+			<artifactId>hapi-fhir</artifactId>
+			<version>5.5.1</version>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
