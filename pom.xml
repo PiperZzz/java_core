@@ -55,6 +55,12 @@
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 			<!-- JDBC相较于JPA有更加灵活精准的SQL语句控制 -->
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot的WebFlux框架必要依赖 -->
+			<artifactId>spring-boot-starter-webflux</artifactId>
+    	</dependency>
 		
 		<dependency>
 			<groupId>mysql</groupId>

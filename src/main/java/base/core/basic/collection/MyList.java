@@ -15,6 +15,9 @@ public class MyList {
     //构造函数声明带有初始值的ArrayList
     List<String> myList2 = new ArrayList<>(Arrays.asList("a", "b", "c"));
 
+    //使用List.of()方法声明带有初始值的List，注意这里的List是java.util.List，而不是java.util.ArrayList，所以它的大小是固定的
+    List<String> myList3 = List.of("aaa", "bbb", "ccc");
+
     String[] array = {"A", "B", "C"};    
     // 使用Arrays.asList()方法将数组转换为ArrayList视图，注意这里的ArrayList是Arrays类的内部类，而不是java.util.ArrayList，所以它的大小是固定的
     List<String> arrayList = new ArrayList<>(Arrays.asList(array));

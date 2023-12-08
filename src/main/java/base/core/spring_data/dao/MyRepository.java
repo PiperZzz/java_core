@@ -1,5 +1,5 @@
 package base.core.spring_data.dao;
 
-public interface repository {
+public interface MyRepository {
     
 }
