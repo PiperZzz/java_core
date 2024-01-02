@@ -83,6 +83,13 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<!-- Spring Boot的JPA框架推荐依赖，数据库连接池 -->
 			<artifactId>HikariCP</artifactId>
@@ -103,6 +110,7 @@
 			<version>5.5.0</version>
 		</dependency>
 
+		<!-- JWT的依赖 -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
