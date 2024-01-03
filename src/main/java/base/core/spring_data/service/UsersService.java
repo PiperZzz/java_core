@@ -19,7 +19,7 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    @Transactional
+    @Transactional /* 用来担保该方法内所有操作要么全部成功，要么全部失败 */
     public void saveUsers(List<Users> usersList) {
         for (Users users : usersList) {
             usersRepository.save(users);
