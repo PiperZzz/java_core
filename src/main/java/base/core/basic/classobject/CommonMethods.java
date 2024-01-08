@@ -55,6 +55,8 @@ public class CommonMethods {
     public void stringMethods() {
         String str = "Hello World";
         String str2 = new String("Hello World");
+
+        int indexOfSubStr = str.indexOf("Hello");
         
         // String的长度length()方法
         for (int i = 0; i < str.length() - 1; i++) {
