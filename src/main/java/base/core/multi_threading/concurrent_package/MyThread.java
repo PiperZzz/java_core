@@ -27,6 +27,7 @@ public class MyThread extends Thread {
     public void run() {
         /* extends Thread创建异步任务的方式必须重写Thread类中run()方法，用于指定需要异步执行的外部任务 */
         String result = callExternalService();
+        /* 重写run()方法是只是分配实际需要执行的任务，它并不能保证该任务会由一个新的线程执行。而start()方法才是为这个run()方法内的任务开辟一个新的线程的终极方法。 */
         callback.onComplete(result); // 调用回调函数，将结果传递给回调
     }
 
