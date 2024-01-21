@@ -1,6 +1,8 @@
 package base.core.basic.java8newer;
 
 import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 import org.springframework.lang.NonNull;
 
 
@@ -51,24 +53,35 @@ public class MyStream {
          * Lambda表达式就是对过滤逻辑规则抽象方法Test()的实现，只要Test()方法（的实现）返回True就会被认为通过测试而被保留下来
          * 这里的规则是：只要比B“大”的元素就被视为通过测试而被保留下来
          */
-        myList.stream().filter(s -> s.compareTo("B") > 0).forEach(s -> System.out.println(s));
+        Stream<String> filteredStream = myList.stream().filter(s -> s.compareTo("B") > 0); 
+        // filter()方法是中间操作（intermediate Operations）,会返回Stream<T>类型对象
+
+        List<String> myListFiltered = filteredStream.collect(Collectors.toList());
+        // collect()方法是终端操作（terminal Operations），Stream对象会返回一个集合对象
+        // collect()方法的参数决定返回什么样的集合对象
+
+        myListFiltered.forEach(s -> System.out.println(s));
     }
 
     /* map()方法的参数是一个Function<T, R>函数式接口，通过实现Function<T, R>接口的apply()方法来实现转换规则
      * Function<T, R>函数式接口的抽象方法apply()的参数是T类型，返回值是R类型
      */
     public static void mapMethod() {
-        ArrayList<String> myList = new ArrayList<>(Arrays.asList("AAA", "BBBB", "C", "DD"));
+        Set<String> mySet = new HashSet<>(Arrays.asList("AAA", "BBBB", "C", "DD"));
 
         /* map()方法的参数就是为实现转换规则而存在的
          * Lambda表达式就是对转换逻辑规则抽象方法apply()的实现，apply()方法（的实现）返回的值就会被认为是转换后的值
          * 这里的规则是：将每个String元素的长度作为转换后的新元素
          */
-        myList.stream().map(String::length).forEach(l -> System.out.println(l));
+        Stream<Integer> mappedStream = mySet.stream().map(String::length);
         /* String::length 是一个方法引用（Method Reference） 
          * 方法引用是一种特殊的Lambda表达式，它的语法是：类名::方法名
          * 这里是对Function<T, R>函数式接口中apply()方法的实现，apply()方法接受一个String类型的参数，并返回一个Integer类型的结果
          * 这与String类的length()方法的签名是一致的，即“类名::方法名”
         */
+
+        Set<Integer> mySetMapped = mappedStream.collect(Collectors.toSet());
+
+        mySetMapped.forEach(s -> System.out.println(s));
     }
 }
