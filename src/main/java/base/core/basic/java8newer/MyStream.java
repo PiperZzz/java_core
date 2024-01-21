@@ -84,4 +84,21 @@ public class MyStream {
 
         mySetMapped.forEach(s -> System.out.println(s));
     }
+
+    public static void sortedMethod() {
+        List<String> myList = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
+
+        /* sorted()方法的参数是一个Comparator<T>函数式接口，通过实现Comparator<T>接口的compare()方法来实现排序规则
+         * Comparator<T>函数式接口的抽象方法compare()的参数是T类型，返回值是int类型
+         */
+        Stream<String> sortedStream = myList.stream().sorted((s1, s2) -> s1.compareTo(s2));
+        /* sorted()方法的参数就是为实现排序规则而存在的
+         * Lambda表达式就是对排序逻辑规则抽象方法compare()的实现，compare()方法（的实现）返回的值就会被认为是排序后的值
+         * 这里的规则是：按照字母顺序排序
+         */
+
+        List<String> myListSorted = sortedStream.collect(Collectors.toList());
+
+        myListSorted.forEach(s -> System.out.println(s));
+    }
 }
