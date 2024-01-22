@@ -2,6 +2,8 @@ package base.core.multi_threading.concurrent_package;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.springframework.scheduling.annotation.Async;
 
@@ -9,17 +11,20 @@ import org.springframework.scheduling.annotation.Async;
  * 无论是以前的Future接口，还是Spring的@Async都难以完成这类“复合”异步任务
  */
 public class MyCompletableFuture {
+    /* 用CompletableFuture如果不显式手动配置线程池，那么会使用系统默认的ForkJoinPool，这个线程池可以被多个CompletableFuture共享 */
+    private static ExecutorService customThreadPoolByExecutorService = Executors.newFixedThreadPool(3);
+
     /* InterruptedException：通常在线程被意外中断时发生，不包含任何cause，自己本身就是异常的cause
      * 如果方法不抛出InterruptedException，编译器会强制要求在调用get()时，用catch语句中处理这个异常
      * ExecutionException：一般会发生在被要求被异步执行的方法内部，发生的异常会被包装向上抛出，通常用getCause()方法获取到原始的异常
      * 如果方法不抛出ExecutionException，编译器会强制要求在调用get()时，用catch语句中处理这个异常
      */
-    public static void parallelCompletableFuture() throws InterruptedException, ExecutionException {
+    public static void supplyAsyncMethod() throws InterruptedException, ExecutionException {
         /* 创建三个CompletableFuture对象，每个代表一个外部服务的调用
          * supplyAsync()是非阻塞方法，接收一个Supplier<T>类型的参数，返回一个CompletableFuture<T>对象
          * 所以CompletableFuture的Generics必须和supplyAsync()方法参数中的方法返回类型一致
          */
-        CompletableFuture<String> service1 = CompletableFuture.supplyAsync(() -> callService1());
+        CompletableFuture<String> service1 = CompletableFuture.supplyAsync(() -> callService1(), customThreadPoolByExecutorService);
         /* supplyAsync()的作用是把外部服务callService1()的调用移交给线程池中的某个线程来执行，达到不阻塞当前线程的目的
          * 这个动作实际上有两步：1、将callService1()推入异步状态；2、成功之后立即返回一个状态未知的CompletableFuture对象service1来跟踪callService1()的执行结果。
          * 理论上，这两步之间是可以被打断的，但实际上supplyAsync()方法的执行完整性是非常可信的  
@@ -42,6 +47,10 @@ public class MyCompletableFuture {
         /* 阻塞等待所有外部服务调用完成 */
         allOf.join();
 
+        CompletableFuture<Object> anyOf = CompletableFuture.anyOf(service1, service2, service3);
+        /* 阻塞等待任意一个外部服务调用完成 */
+        anyOf.join();
+
         /* 在调用get()方法之前，service1、service2、service3的状态依然是不确定的
          * 但是由于之前用join()阻塞等待所有外部服务调用完成，所以在get()方法被调用，期待的是CompletableFuture内的Generics对象已经可以被get()返回了
          * 这里可能是执行成功返回预期中的Generics对象，也可能是执行失败返回异常
@@ -53,12 +62,50 @@ public class MyCompletableFuture {
         System.out.println("Combined Result: " + result);
     }
 
-    public static void chainCompletableFuture() throws InterruptedException, ExecutionException {
+    public static void thenApplyMethod() throws InterruptedException, ExecutionException {
         CompletableFuture<String> service1 = CompletableFuture.supplyAsync(() -> callService1());
-        CompletableFuture<String> service2 = service1.thenApplyAsync((result) -> result + callService2());
-        CompletableFuture<String> service3 = service2.thenApplyAsync((result) -> result + callService3());
+        CompletableFuture<String> service1Processed = service1.thenApply(result -> result + "Some Sync Task Results" + callService2());
+        /* thenApply()通常是对自己的异步任务完成后的结果进行加工，但是和thenCompose()的不同是它不接受任何其它的异步任务结果 */
+
+        CompletableFuture<String> service2 = CompletableFuture.supplyAsync(() -> callService2());
+        CompletableFuture<String> service1CombineServer2 = service1.thenApply((result) -> result + service2.join());
+        /* thenApply()如果一定要接受异步任务结果，就必须阻塞等待其变成“同步”*/
+        CompletableFuture<String> service3 = service1CombineServer2.thenApplyAsync((result) -> result + callService3(), customThreadPoolByExecutorService);
+        /* thenApplyAsync()和thenApply()的不同在于它会给新的CompletableFuture分配一个新的Thread，而不是继续使用这个异步任务链上的Thread，如果不显式配置ThreadPool，会用系统默认的ForkJoinPool */
+        String result = service3.get();
+        System.out.println("Combined Result: " + result);
+    }
+
+    public static void thenComposeMethod() throws InterruptedException, ExecutionException {
+        CompletableFuture<String> service1 = CompletableFuture.supplyAsync(() -> callService1());
+
+        CompletableFuture<String> service2 = service1.thenCompose((result) -> CompletableFuture.supplyAsync(() -> result + callService2()));
+        /* thenCompose()和thenApply()的不同在于它接受其它异步任务，并且合并到它自己的异步任务完成后的结果，这种合并是有依赖的，它依赖于其它异步任务的执行结果 */
+        CompletableFuture<String> service3 = service2.thenComposeAsync((result) -> CompletableFuture.supplyAsync(() -> result + callService3()));
 
         String result = service3.get();
+        System.out.println("Combined Result: " + result);
+    }
+
+    public static void thenAcceptMethod() throws InterruptedException, ExecutionException {
+        CompletableFuture<String> service1 = CompletableFuture.supplyAsync(() -> callService1());
+
+        CompletableFuture<Void> service2 = service1.thenAccept((result) -> System.out.println("Result: " + result));
+        /* thenAccept()和thenApply()的不同在于它不返回任何结果，它只是对自己的异步任务完成后的结果进行消费 */
+        CompletableFuture<Void> service3 = service2.thenAcceptAsync((result) -> System.out.println("Result: " + result), customThreadPoolByExecutorService);
+
+        service3.get();
+    }
+
+    public static void thenCombineMethod() throws InterruptedException, ExecutionException {
+        CompletableFuture<String> service1 = CompletableFuture.supplyAsync(() -> callService1());
+        CompletableFuture<String> service2 = CompletableFuture.supplyAsync(() -> callService2());
+
+        CompletableFuture<String> service3 = service1.thenCombine(service2, (result1, result2) -> result1 + result2).exceptionally(null);
+        /*  */
+        CompletableFuture<String> service4 = service3.thenCombineAsync(service1, (result1, result2) -> result1 + result2, customThreadPoolByExecutorService);
+
+        String result = service4.get();
         System.out.println("Combined Result: " + result);
     }
 
