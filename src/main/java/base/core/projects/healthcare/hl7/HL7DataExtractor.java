@@ -1,4 +1,4 @@
-package base.projects.healthcare.hl7;
+package base.core.projects.healthcare.hl7;
 
 import ca.uhn.hl7v2.DefaultHapiContext;
 import ca.uhn.hl7v2.HapiContext;
