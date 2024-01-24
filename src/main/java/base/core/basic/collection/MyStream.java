@@ -1,4 +1,4 @@
-package base.core.basic.java8newer;
+package base.core.basic.collection;
 
 import java.util.*;
 import java.util.stream.Stream;
