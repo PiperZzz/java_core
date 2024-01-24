@@ -21,13 +21,13 @@ public class MergeSortedArrays {
             } else {
                 arrayMerged[indexMerged++] = array2[index2++]; // Copy the current element of array2 to the merged array
             }
-        }
+        } // When the loop is stopped, either array1 or array2 is looped through
         
-        while (index1 < array1.length) { // When array1 is not looped through, copy the remaining elements of array1 to the merged array
+        while (index1 < array1.length) { // if array1 is not looped through, copy the remaining elements of array1 to the merged array
             arrayMerged[indexMerged++] = array1[index1++];
         }
       
-        while (index2 < array2.length) { // When array2 is not looped through, copy the remaining elements of array2 to the merged array
+        while (index2 < array2.length) { // if array2 is not looped through, copy the remaining elements of array2 to the merged array
             arrayMerged[indexMerged++] = array2[index2++];
         }
         
