@@ -129,7 +129,8 @@ public class MyThread extends Thread {
     public static void asyncRunnableThreadPool() throws InterruptedException, ExecutionException {
         Runnable runnableTask = () -> callExternalService();
 
-        customThreadPoolByExecutorService.submit(runnableTask);
+        customThreadPoolByExecutorService.execute(runnableTask); // exectue()方法不会阻塞主线程，所以不需要调用join()等待异步任务完成，也就无法获取异步任务的执行结果
+        // exectue()方法和submit()方法的区别在于，execute() 方法不会返回任何 Future 对象，所以无法判断任务是否执行成功
     }
     
     /* 最先进的CompletableFuture实现方式 */
