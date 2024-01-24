@@ -1,7 +1,7 @@
 package base.core.leetcode.two_pointers;
 
-public class MergeTwoSortedArrays {
-    public static int[] mergeArrays(int[] array1, int[] array2) {
+public class MergeSortedArrays {
+    public static int[] mergeSortedArrays(int[] array1, int[] array2) {
         // Boundary Condition Check - Revisit
 
         // Initialization - Solution

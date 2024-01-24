@@ -2,8 +2,8 @@ package base.core.leetcode.two_pointers;
 
 import base.core.leetcode.ListNode;
 
-public class MergeTwoSortedLinkedLists {
-    public ListNode mergeTwoListsLoop(ListNode listNode1, ListNode listNode2) {
+public class MergeSortedLinkedLists {
+    public ListNode mergeByLoop(ListNode listNode1, ListNode listNode2) {
         // Boundary Condition Check
         if (listNode1 == null && listNode2 == null) {
             return null;
@@ -33,7 +33,7 @@ public class MergeTwoSortedLinkedLists {
         return dummy.next;
     }
 
-    public static ListNode mergeTwoListsRecursive(ListNode listNode1, ListNode listNode2) {
+    public static ListNode mergeByRecursion(ListNode listNode1, ListNode listNode2) {
         // Boundary Condition Check: if the input lists are null
         if (listNode1 == null && listNode2 == null) {
             return null;
@@ -47,10 +47,10 @@ public class MergeTwoSortedLinkedLists {
             int value1 = listNode1.value;
             int value2 = listNode2.value;
             if (value1 < value2) {
-                listNode1.next = mergeTwoListsRecursive(listNode1.next, listNode2);
+                listNode1.next = mergeByRecursion(listNode1.next, listNode2);
                 return listNode1;
             } else {
-                listNode2.next = mergeTwoListsRecursive(listNode1, listNode2.next);
+                listNode2.next = mergeByRecursion(listNode1, listNode2.next);
                 return listNode2;
             }
         }
