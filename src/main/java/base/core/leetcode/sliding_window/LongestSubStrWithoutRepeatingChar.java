@@ -4,37 +4,37 @@ import java.util.HashMap;
 
 public class LongestSubStrWithoutRepeatingChar {
     public static int lengthOfLongestSubstring(String str) {
-        // Corner Case Check
+        // Corner Case
         if (str == null || str.isEmpty()) {
             return 0;
         }
 
-        // Assume: The string contains all lower or upper case charaters
+        // Assume: all lower or upper case - revisit
 
-        // Init - Create a frequency map to store the count of each character
+        // Init - frequency map to store the count of each character
         HashMap<Character, Integer> charCounts = new HashMap<>();
         
-        // Init - Pointers/Sliding Window left and right slides 
-        int left = 0; // left pointer starts from the head of the string
-        int right = 0; // right pointer starts from the head of the string
+        // Init - Pointers/Sliding Window left and right boundaries
+        int left = 0; // left pointer starts from the head, it moves when repeating character is found
+        int right = 0; // right pointer starts from the head, it moves each loop no matter what
 
         // Init - max length of the substring without repeating characters
         int maxLength = 0;
 
-        while (right < str.length()) { // When the window is not out of bound, execute the loop body
+        while (right < str.length()) { // When the window is not out of bound, otherwise stop the loop
             // Expand the window
-            char rightChar = str.charAt(right); // Get the current character on the right boundary of the window
-            charCounts.put(rightChar, charCounts.getOrDefault(rightChar, 0) + 1); // Update the frequency map - if the character is not in the map, set the count to 1, otherwise increment the count
-            right++; // Move the right pointer towards the right boundary of the window
+            char rightChar = str.charAt(right); // Get the current right boundary character
+            charCounts.put(rightChar, charCounts.getOrDefault(rightChar, 0) + 1); // Update the frequency map - increase the count of the current character frequency by 1
+            right++; // Move right pointer towards right boundary
 
             // Shrink the window
-            while (charCounts.get(rightChar) > 1) { // When the current character on the right boundary is not unique anymore in the window, execute the loop body to shrink the window
-                char leftChar = str.charAt(left); // Get the current character on the left boundary of the window which should also be the character on the right boundary of the window
-                charCounts.put(leftChar, charCounts.get(leftChar) - 1); // Update the frequency map - reset the count of the character frquency to 1
-                left++; // Move the left pointer towards the right boundary of the window
+            if (charCounts.get(rightChar) > 1) { // When find a repeating character of which the count is greater than 1 
+                // Get the current left boundary character which should also be the right boundary character
+                charCounts.put(rightChar, 1); // Update the frequency map - reset the count of the repeacting charactet to 1
+                left++; // Move left pointer towards right boundary
             }
 
-            // Update the max length of the substring without repeating characters, always pick up the greater one of the current max length and the length of the current window
+            // Always pick up the current max length or the current window length, whichever is greater
             maxLength = Math.max(maxLength, right - left);
         }
 
