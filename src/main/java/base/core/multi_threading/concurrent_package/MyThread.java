@@ -10,15 +10,13 @@ import java.util.concurrent.Executors;
 import java.util.function.Supplier;
 
 public class MyThread extends Thread {
+    private Callback callback; /* extends Thread创建异步任务的方式必须有用于获得run()方法中外部服务返回结果的回调 */
 
-    /* extends Thread创建异步任务的方式必须有用于获得run()方法中外部服务返回结果的回调 */
-    private Callback callback;
-
+    private static ExecutorService customThreadPoolByExecutorService = Executors.newFixedThreadPool(3);
     /* 用CompletableFuture如果不显式手动配置线程池，那么会使用系统默认的ForkJoinPool，这个线程池可以被多个CompletableFuture共享
      * 如果用extends Thread的方式，根本不会用到线程池，而是直接创建一个新线程
      */
-    private static ExecutorService customThreadPoolByExecutorService = Executors.newFixedThreadPool(3);
-
+    
     public MyThread(Callback callback) {
         this.callback = callback;
     }
@@ -44,7 +42,8 @@ public class MyThread extends Thread {
             /* 在回调函数中处理callService1()的结果 */
             System.out.println("Result: " + result);
         });
-        myThread.start();
+        myThread.start(); // 只有当start()方法被调用，才会真正创建一个新线程，执行run()方法中的任务
+        // 由于start()方法是非阻塞方法，它会将myThread内run()方法中的任务分配给一个新线程，然后立即返回，不会阻塞主线程
 
         /*
         * 在这里可以执行其他任务，不会阻塞主线程 
@@ -52,9 +51,9 @@ public class MyThread extends Thread {
 
         try {
             /* 阻塞主线程，等待回调结果 */
-            myThread.join();
+            myThread.join(); // join()方法是阻塞方法，它会阻塞当前线程，让myThread内run()方法中的任务执行完毕，然后回到当前线程的任务
         } catch (InterruptedException e) {
-            /* 如果方法不抛出InterruptionException，就必须在这里捕获这个异常 */
+            /* 如果方法asyncTaskExtendsThread()声明的时候不Throws InterruptionException，就必须在这里捕获这个异常 */
             e.printStackTrace();
         }
     }
@@ -89,6 +88,7 @@ public class MyThread extends Thread {
         Callable<String> callableTask = () -> callExternalService();
 
         Future<String> future = customThreadPoolByExecutorService.submit(callableTask);
+        // submit()方法和exectue()方法的区别在于，submit()方法会返回Future对象来跟踪异步任务的执行情况
 
         String result = future.get();
 
@@ -97,11 +97,13 @@ public class MyThread extends Thread {
 
     /* 用CompletableFuture完成Callable + Future + ThreadPool相同的任务
      * 目前最为先进的实现方式，不仅可以完成简单异步任务，还可以完成各种复杂的依赖合并异步任务
-    */
+     */
     public static void asyncTaskCompletableFutureSupply() throws InterruptedException, ExecutionException {
         CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> callExternalService(), customThreadPoolByExecutorService);
 
-        String result = completableFuture.join(); // 阻塞主线程，等待异步任务完成并获取结果    
+        completableFuture.join(); // 阻塞主线程，等待异步任务完成   
+
+        String result = completableFuture.get(); // 得到异步任务的执行结果
 
         System.out.println("Result: " + result);
     }
@@ -118,19 +120,18 @@ public class MyThread extends Thread {
         Thread thread = new Thread(runnableTask);
 
         thread.start();
-
         /* 原则上不调用thread.join()等待异步任务完成，不然就和同步任务有区别了
          * 因为Runnable对象的run()方法没有返回值，所以也就没有办法获取异步任务的执行结果
          * Runnable的目的就是完全不关心callExternalService()的异步执行结果
-        */
+         */
     }
 
     /* Runnable比单一线程实现方法先进一些的线程池实现方式 */
     public static void asyncRunnableThreadPool() throws InterruptedException, ExecutionException {
         Runnable runnableTask = () -> callExternalService();
 
-        customThreadPoolByExecutorService.execute(runnableTask); // exectue()方法不会阻塞主线程，所以不需要调用join()等待异步任务完成，也就无法获取异步任务的执行结果
-        // exectue()方法和submit()方法的区别在于，execute() 方法不会返回任何 Future 对象，所以无法判断任务是否执行成功
+        customThreadPoolByExecutorService.execute(runnableTask);
+        // exectue()方法和submit()方法的区别在于，execute()方法不会返回任何Future对象，所以无法判断任务是否执行成功
     }
     
     /* 最先进的CompletableFuture实现方式 */
