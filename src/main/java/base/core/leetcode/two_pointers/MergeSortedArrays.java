@@ -2,12 +2,12 @@ package base.core.leetcode.two_pointers;
 
 public class MergeSortedArrays {
     public static int[] mergeSortedArrays(int[] array1, int[] array2) {
-        // Boundary Condition Check - Revisit
+        // Boundary Corner Case - Revisit
 
-        // Initialization - Solution
+        // Init - Merged Array
         int[] arrayMerged = new int[array1.length + array2.length];
         
-        // Initialization - Pointers
+        // Init - Pointers
         int index1 = 0;
         int index2 = 0;
         int indexMerged = 0;
