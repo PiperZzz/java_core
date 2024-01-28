@@ -2,7 +2,7 @@ package base.core.leetcode.sliding_window;
 
 public class MaxProfit {
     public static int maxProfit(int[] prices) {
-        // Boundary Condition Check
+        // Boundary/Corner Case
         if (prices == null || prices.length <= 1) {
             return 0;
         }

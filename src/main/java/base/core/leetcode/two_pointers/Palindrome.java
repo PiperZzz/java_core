@@ -2,7 +2,7 @@ package base.core.leetcode.two_pointers;
 
 public class Palindrome {
     public boolean isPalindrome(String str) {
-        // Boundary / Corner Case - Revisit
+        // Boundary/Corner Case - Revisit
 
         // Remove all non-alphanumeric characters and convert the string to lowercase or Make reasonable assumptions
         str = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();

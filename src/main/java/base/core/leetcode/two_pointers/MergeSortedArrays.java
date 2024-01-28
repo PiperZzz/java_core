@@ -2,7 +2,7 @@ package base.core.leetcode.two_pointers;
 
 public class MergeSortedArrays {
     public static int[] mergeSortedArrays(int[] array1, int[] array2) {
-        // Boundary Corner Case - Revisit
+        // Boundary/Corner Case - Revisit
 
         // Init - Merged Array
         int[] arrayMerged = new int[array1.length + array2.length];

@@ -2,11 +2,11 @@ package base.core.leetcode.two_pointers;
 
 public class ReverseString {
     public String reverseString(String str) {
-        // Boundary/Corner Condition Check - Revisit
+        // Boundary/Corner Case - Revisit
 
-        // Initialization - Convert the string to a character array
+        // Init - Convert the string to a character array
         char[] chars = str.toCharArray();
-        // Initialization - Pointers, left starts from the head of the string, right starts from the tail of the string
+        // Init - Pointers, left starts from the head of the string, right starts from the tail of the string
         int left = 0;
         int right = str.length() - 1;
         

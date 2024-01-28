@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class LongestSubStrWithoutRepeatingChar {
     public static int lengthOfLongestSubstring(String str) {
-        // Corner Case
+        // Boundary/Corner Case
         if (str == null || str.isEmpty()) {
             return 0;
         }
