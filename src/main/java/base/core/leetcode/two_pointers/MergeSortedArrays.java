@@ -16,8 +16,8 @@ public class MergeSortedArrays {
         while (index1 < array1.length && index2 < array2.length) { // When either of the two arrays is looped through, stop the loop
             if (array1[index1] < array2[index2]) { // When the current element of array1 is smaller than the current element of array2
                 arrayMerged[indexMerged++] = array1[index1++]; // Copy the current element of array1 to the merged array
-                // indexMerged++; // Move the pointer of the merged array
-                // index1++; // Move the pointer of array1
+                // indexMerged++ Move the pointer of the merged array
+                // index1++ Move the pointer of array1
             } else {
                 arrayMerged[indexMerged++] = array2[index2++]; // Copy the current element of array2 to the merged array
             }
