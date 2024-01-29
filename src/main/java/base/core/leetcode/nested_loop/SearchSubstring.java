@@ -2,7 +2,7 @@ package base.core.leetcode.nested_loop;
 
 public class SearchSubstring {
     public int strStr(String haystack, String needle) {
-        // Boundary Condition Check
+        // Boundary/Corner Case
         if (needle.isEmpty()) {
             return 0;
         }
