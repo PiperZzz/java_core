@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/java/base/core/projects/remotasks/Response1.java
+src/main/java/base/core/projects/remotasks/Response2.java
