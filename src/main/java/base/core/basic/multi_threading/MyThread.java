@@ -1,4 +1,4 @@
-package base.core.multi_threading;
+package base.core.basic.multi_threading;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
