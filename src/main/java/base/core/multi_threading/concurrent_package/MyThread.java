@@ -39,7 +39,7 @@ public class MyThread extends Thread {
     */
     public static void asyncTaskExtendsThread() throws ExecutionException {
         MyThread myThread = new MyThread(result -> {
-            /* 在回调函数中处理callService1()的结果 */
+            /* 在回调函数中处理callExternalService()的结果 */
             System.out.println("Result: " + result);
         });
         myThread.start(); // 只有当start()方法被调用，才会真正创建一个新线程，执行run()方法中的任务
@@ -58,8 +58,8 @@ public class MyThread extends Thread {
         }
     }
 
-    /* Callable + FutureTask + new Thread()是非常古早的单一线程实现方式 */
-    public static void aysncCallableFutrueTaskThread() throws InterruptedException, ExecutionException {
+    /* Callable + FutureTask + new Thread()也是一种非常古早的单一线程实现方式 */
+    public static void aysncCallableFutrueTaskNewThread() throws InterruptedException, ExecutionException {
         Callable<String> callableTask = new Callable<String>() {
             @Override
             public String call() throws Exception {
@@ -109,7 +109,7 @@ public class MyThread extends Thread {
     }
 
     /* Runnable古早的单一线程实现方式 */
-    public static void asyncRunnableThead() throws InterruptedException, ExecutionException {
+    public static void asyncRunnableNewThead() throws InterruptedException, ExecutionException {
         Runnable runnableTask = new Runnable() {
             @Override
             public void run() {
@@ -126,7 +126,7 @@ public class MyThread extends Thread {
          */
     }
 
-    /* Runnable比单一线程实现方法先进一些的线程池实现方式 */
+    /* Runnable比单一线程实现方法更先进的ThreadPool实现方式 */
     public static void asyncRunnableThreadPool() throws InterruptedException, ExecutionException {
         Runnable runnableTask = () -> callExternalService();
 
@@ -136,13 +136,13 @@ public class MyThread extends Thread {
     
     /* 最先进的CompletableFuture实现方式 */
     public static void asyncTaskCompletableFutureRun() throws InterruptedException, ExecutionException {
-        CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> callExternalService(), customThreadPoolByExecutorService);
+        CompletableFuture.runAsync(() -> callExternalService(), customThreadPoolByExecutorService);
 
         /*
         * 在这里可以执行其他任务，不会阻塞主线程 
         */
 
-        /* 原则上不调用completableFuture.join()，因为runAsync()目的就是不关心异步任务的执行结果 */
+        /* 原则上不调用join()，因为runAsync()目的就是不关心异步任务的执行结果 */
     }
 
     /* 用CompletableFuture，完成相同的任务，同时还可以提供非阻塞方法等待回调结果 */
