@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-service
+spec:
+  selector:
+    app: java-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort #公开到集群外部，但通过固定的Node端口
+#ClusterIP 用于集群内部通信，不会公开到集群外部。
+#LoadBalancer 使用云提供商的负载均衡器，能够动态管理负载均衡，适用于公开服务 AWS的叫Elastic Load Balancing (ELB)
+#ExternalName 将Service映射到集群外部的DNS名称，用于集成外部资源
