@@ -2,7 +2,7 @@ package base.core;
 
 import java.util.HashMap;
 
-public class StringGame {
+public class GameString {
     public static void stringChar() {
         String str = "abcdefga";
 
