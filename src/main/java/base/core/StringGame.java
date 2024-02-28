@@ -1,7 +1,6 @@
 package base.core;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class StringGame {
     public static void stringChar() {
@@ -13,8 +12,6 @@ public class StringGame {
             mapCharFreq.put(c, mapCharFreq.getOrDefault(c, 0) + 1);
         }
 
-        for (Map.Entry<Character, Integer> e : mapCharFreq.entrySet()) {
-            System.out.println(e.getKey() + " " + e.getValue());
-        }
+        mapCharFreq.forEach((k, v) -> System.out.println(k + " " + v));
     }
 }
