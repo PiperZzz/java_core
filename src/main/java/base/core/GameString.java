@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class GameString {
     public static void stringChar() {
-        String str = "abcdefga";
+        String str = "abcde\"fgaA ; \\";
 
         HashMap<Character, Integer> mapCharFreq = new HashMap<>();
 
