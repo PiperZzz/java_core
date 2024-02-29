@@ -17,7 +17,7 @@ public class Orderbook {
         orders.add(order);
     }
 
-    public void cancelOrder(String orderId) {
+    public void cancelOrder(Long orderId) {
         orders.removeIf(order -> order.getOrderId().equals(orderId));
     }
 }

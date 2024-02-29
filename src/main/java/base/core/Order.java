@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Order {
-    private String orderId;
+    private Long orderId;
     private String symbol;
     private String side; // "BUY" or "SELL"
     private double price;
