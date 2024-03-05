@@ -19,19 +19,19 @@ public class OrderController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<OrderDTO> getOrder(@RequestParam Long orderId) {
+    public ResponseEntity<OrderDTO> getOrder(@RequestParam("orderId") Long orderId) {
         OrderDTO newOrder = orderService.getOrder(orderId);
         return ResponseEntity.ok(newOrder);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<OrderDTO> updateOrder(@RequestParam Long orderId, @RequestBody OrderDTO order) {
+    @PutMapping("/update/{orderId}")
+    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO order) {
         OrderDTO newOrder = orderService.updateOrder(orderId, order);
         return ResponseEntity.ok(newOrder);
     }
 
-    @DeleteMapping("/cancel")
-    public ResponseEntity<OrderDTO> cancelOrder(@RequestParam Long orderId) {
+    @DeleteMapping("/cancel/{orderId}")
+    public ResponseEntity<OrderDTO> cancelOrder(@PathVariable Long orderId) {
         OrderDTO newOrder = orderService.cancelOrder(orderId);
         return ResponseEntity.ok(newOrder);
     }
