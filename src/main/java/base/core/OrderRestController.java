@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/api/v1/orders")
-public class OrderController {
+public class OrderRestController {
 
     @Autowired
     private OrderService orderService;
