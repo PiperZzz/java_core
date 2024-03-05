@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Orderbook {
-    private List<Order> orders = new ArrayList<>();
+    private List<OrderDTO> orders = new ArrayList<>();
 
-    public List<Order> getOrders() {
+    public List<OrderDTO> getOrders() {
         return orders;
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(OrderDTO order) {
         orders.add(order);
     }
 

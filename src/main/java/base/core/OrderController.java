@@ -13,26 +13,26 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/create")
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order newOrder = orderService.createOrder(order);
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO order) {
+        OrderDTO newOrder = orderService.createOrder(order);
         return ResponseEntity.ok(newOrder);
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Order> getOrder(@RequestParam Long orderId) {
-        Order newOrder = orderService.getOrder(orderId);
+    public ResponseEntity<OrderDTO> getOrder(@RequestParam Long orderId) {
+        OrderDTO newOrder = orderService.getOrder(orderId);
         return ResponseEntity.ok(newOrder);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Order> updateOrder(@RequestParam Long orderId, @RequestBody Order order) {
-        Order newOrder = orderService.updateOrder(orderId, order);
+    public ResponseEntity<OrderDTO> updateOrder(@RequestParam Long orderId, @RequestBody OrderDTO order) {
+        OrderDTO newOrder = orderService.updateOrder(orderId, order);
         return ResponseEntity.ok(newOrder);
     }
 
     @DeleteMapping("/cancel")
-    public ResponseEntity<Order> cancelOrder(@RequestParam Long orderId) {
-        Order newOrder = orderService.cancelOrder(orderId);
+    public ResponseEntity<OrderDTO> cancelOrder(@RequestParam Long orderId) {
+        OrderDTO newOrder = orderService.cancelOrder(orderId);
         return ResponseEntity.ok(newOrder);
     }
 }

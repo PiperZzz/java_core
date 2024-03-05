@@ -12,23 +12,23 @@ public class OrderService {
     @Autowired
     private Orderbook orderbook;
 
-    public Order createOrder(Order order) {
+    public OrderDTO createOrder(OrderDTO order) {
         // 创建订单
         return order;
     }
 
-    public Order getOrder(Long orderId) {
+    public OrderDTO getOrder(Long orderId) {
         // 获取订单
-        return new Order();
+        return new OrderDTO();
     }
 
-    public Order updateOrder(Long orderId, Order order) {
+    public OrderDTO updateOrder(Long orderId, OrderDTO order) {
         // 更新订单
         return order;
     }
 
-    public Order cancelOrder(Long orderId) {
+    public OrderDTO cancelOrder(Long orderId) {
         // 取消订单
-        return new Order();
+        return new OrderDTO();
     }
 }
