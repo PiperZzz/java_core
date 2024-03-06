@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
@@ -24,7 +25,9 @@ public class Order {
     @Column(name = "id")
     private Long orderId;
 
+    @NotBlank(message = "Symbol is mandatory")
     private String symbol;
+    
     private String side; // "BUY" or "SELL"
     private double price;
     private int quantity;
@@ -34,13 +37,12 @@ public class Order {
     @JoinColumn(name = "userId", nullable = false)
     private User user;
     
-    public Order(String symbol, String side, double price, int quantity, String status, User user) {
+    public Order(String symbol, String side, double price, int quantity, String status) {
         this.symbol = symbol;
         this.side = side;
         this.price = price;
         this.quantity = quantity;
         this.status = status;
-        this.user = user;
     }
 
     public Order() {

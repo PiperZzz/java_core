@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
@@ -18,13 +19,16 @@ import lombok.Data;
 @Table(name = "Users")
 @Data
 public class User {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Column(name = "id")
     private Long userId;
 
+    @NotBlank(message = "Username is mandatory")
     private String username;
+    
     private String email;
 
     @OneToMany(mappedBy = "user")
