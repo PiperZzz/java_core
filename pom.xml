@@ -96,6 +96,20 @@
 			<!-- 如不显式配置数据库连接池，数据库似乎也可以连接，这里不同的GPT说法有冲突，有说依赖会从数据库驱动隐式引入，有说依赖会从jpa依赖隐式引入 -->
 		</dependency>
 
+		<!-- Vert.x Core依赖 -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
+			<version>3.9.1</version>
+		</dependency>
+		
+		<!-- Vert.x Web依赖 -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-web</artifactId>
+			<version>3.9.1</version>
+		</dependency>
+
 		<!-- HAPI HL7 V2库的依赖 -->
 		<dependency>
 			<groupId>ca.uhn.hapi</groupId>
