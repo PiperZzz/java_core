@@ -34,9 +34,19 @@ public class OrderService {
         }
     }
 
-    public OrderDTO updateOrder(Long orderId, OrderDTO order) {
-        // 更新订单
-        return order;
+    public OrderDTO updateOrder(@NotNull Long orderId, @NotBlank OrderDTO order) {
+        Order existingOrder = orderRepository.findByOrderId(orderId);
+        if (existingOrder != null) {
+            existingOrder.setOrderId(order.getOrderId());
+            try {
+                orderRepository.save(existingOrder);
+                return new OrderDTO(existingOrder.getOrderId());
+            } catch (Exception e) {
+                return new OrderDTO();
+            }
+        } else {
+            return new OrderDTO();
+        }
     }
 
     public OrderDTO cancelOrder(Long orderId) {
