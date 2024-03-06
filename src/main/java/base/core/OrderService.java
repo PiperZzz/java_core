@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
     @Autowired
-    private OrderRespository orderRespository;
+    private OrderRepository orderRepository;
 
     @Autowired
     private Orderbook orderbook;
