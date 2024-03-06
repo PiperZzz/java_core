@@ -1,5 +1,8 @@
 package base.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,12 +16,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderRestController {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderRestController.class);
 
     @Autowired
     private OrderService orderService;
@@ -37,8 +43,14 @@ public class OrderRestController {
 
     @PutMapping("/update/{orderId}")
     public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO order) {
-        OrderDTO newOrder = orderService.updateOrder(orderId, order);
-        return ResponseEntity.ok(newOrder);
+        try {
+            OrderDTO newOrder = orderService.updateOrder(orderId, order);
+            logger.info("Order updated: {}", newOrder);
+            return ResponseEntity.ok(newOrder);
+        } catch (Exception e) {
+            logger.error("updateOrder error: {}", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @DeleteMapping("/cancel/{orderId}")
