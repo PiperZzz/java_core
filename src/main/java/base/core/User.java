@@ -10,8 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.Data;
-import lombok.NonNull;
 
 @Entity
 @Table(name = "Users")
@@ -19,7 +20,7 @@ import lombok.NonNull;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonNull
+    @NotNull
     @Column(name = "id")
     private Long userId;
 
@@ -28,4 +29,21 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

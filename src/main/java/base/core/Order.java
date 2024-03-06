@@ -9,8 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.Data;
-import lombok.NonNull;
 
 @Entity
 @Table(name = "Orders") // "Order" is a reserved keyword in SQL
@@ -19,7 +20,7 @@ public class Order {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonNull
+    @NotNull
     @Column(name = "id")
     private Long orderId;
 
