@@ -26,10 +26,13 @@ public class OrderService {
     }
 
     public OrderDTO getOrder(@NotBlank Long orderId) {
-        // 获取订单
-        return new OrderDTO();
+        Order order = orderRepository.findByOrderId(orderId);
+        if (order != null) {
+            return new OrderDTO(order.getOrderId());
+        } else {
+            return new OrderDTO();
+        }
     }
-
 
     public OrderDTO updateOrder(Long orderId, OrderDTO order) {
         // 更新订单
