@@ -30,9 +30,13 @@ public class OrderRestController {
     private OrderService orderService;
 
     @PostMapping("/create")
-    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO order) {
-        OrderDTO newOrder = orderService.createOrder(order);
-        return ResponseEntity.ok(newOrder);
+    public ResponseEntity<String> createOrder(@RequestBody OrderDTO order) {
+        try {
+            orderService.createOrder(order);
+            return ResponseEntity.ok("Order created");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @GetMapping("/get")
