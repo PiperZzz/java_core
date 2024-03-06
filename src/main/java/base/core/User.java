@@ -10,23 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.NotBlank;
-
 import lombok.Data;
 
-@Entity
-@Table(name = "Users")
 @Data
+@Entity
+@Table(name = "Users") // Entity Name建议用单数，但是很有可能和Table Name不一样，这里就要用@Table来指定了。
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-    @Column(name = "id")
+    @Column(name = "user_id")
     private Long userId;
 
-    @NotBlank(message = "Username is mandatory")
+    @Column(unique = true, nullable = false)
     private String username;
     
     private String email;

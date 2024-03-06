@@ -9,23 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.NotBlank;
-
 import lombok.Data;
 
-@Entity
-@Table(name = "Orders") // "Order" is a reserved keyword in SQL
 @Data
+@Entity
+@Table(name = "Orders")
 public class Order {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-    @Column(name = "id")
+    @Column(name = "order_id")
     private Long orderId;
 
-    @NotBlank(message = "Symbol is mandatory")
+    @Column(unique = false, nullable = false)
     private String symbol;
     
     private String side; // "BUY" or "SELL"
@@ -34,7 +30,7 @@ public class Order {
     private String status; // "NEW", "FILLED", "PARTIALLY_FILLED", "CANCELLED"
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     
     public Order(String symbol, String side, double price, int quantity, String status) {
