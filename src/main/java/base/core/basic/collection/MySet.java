@@ -10,5 +10,10 @@ public class MySet {
         Set<Integer> set = new HashSet<>(Arrays.asList(1,2,3,3,4,5,5));
 
         System.out.println(set);
+
+        int i = 6;
+        if(set.contains(i)){
+            set.add(i);
+        };
     }
 }
