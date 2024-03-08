@@ -49,8 +49,7 @@ public class OrderService {
         }
     }
 
-    public OrderDTO cancelOrder(Long orderId) {
+    public void cancelOrder(Long orderId) {
         // 取消订单
-        return new OrderDTO();
     }
 }

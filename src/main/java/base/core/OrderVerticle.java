@@ -21,9 +21,9 @@ public class OrderVerticle extends AbstractVerticle{
         HttpServer server = vert.createHttpServer();
         Router router = Router.router(vertx);
 
-        router.route("/api/v1/order/create").handler(this::createOrder);
+        router.put("/api/v1/order/create").handler(this::createOrder);
         router.get("/api/v1/orders/get").handler(this::getOrderHandler);
-        router.put("/api/v1/orders/update/:orderId").handler(this::updateOrderHandler);
+        router.post("/api/v1/orders/update/:orderId").handler(this::updateOrderHandler);
         router.delete("/api/v1/orders/cancel/:orderId").handler(this::cancelOrderHandler);
 
         server.requestHandler(router).listen(8080);

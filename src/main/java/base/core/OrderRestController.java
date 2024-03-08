@@ -58,8 +58,8 @@ public class OrderRestController {
     }
 
     @DeleteMapping("/cancel/{orderId}")
-    public ResponseEntity<OrderDTO> cancelOrder(@PathVariable Long orderId) {
-        OrderDTO newOrder = orderService.cancelOrder(orderId);
-        return ResponseEntity.ok(newOrder);
+    public ResponseEntity<String> cancelOrder(@PathVariable Long orderId) {
+        orderService.cancelOrder(orderId);
+        return ResponseEntity.ok("Order cancelled");
     }
 }
