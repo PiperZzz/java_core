@@ -29,7 +29,7 @@ public class OrderRestController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/create")
+    @PutMapping("/create")
     public ResponseEntity<String> createOrder(@RequestBody OrderDTO order) {
         try {
             orderService.createOrder(order);
@@ -45,7 +45,7 @@ public class OrderRestController {
         return ResponseEntity.ok(newOrder);
     }
 
-    @PutMapping("/update/{orderId}")
+    @PostMapping("/update/{orderId}")
     public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO order) {
         try {
             OrderDTO newOrder = orderService.updateOrder(orderId, order);
