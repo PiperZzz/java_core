@@ -2,6 +2,7 @@ package base.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -41,14 +42,19 @@ public class OrderVerticle extends AbstractVerticle{
         });
     }
 
-    private void createOrder(RoutingContext routingContext) {
+    private ResponseEntity<String> createOrder(RoutingContext routingContext) {
         HttpServerRequest request = routingContext.request();
         request.bodyHandler(buffer -> {
             OrderDTO order = new OrderDTO();
             order.setOrderId(buffer.toJsonObject().mapTo(OrderDTO.class).getOrderId());
-            orderService.createOrder(order);
-            routingContext.response().end("Order created");
+            try {
+                orderService.createOrder(order);
+            } catch (Exception e) {
+                logger.error("Failed to create order", e);
+                routingContext.response().setStatusCode(500).end("Internal Server Error");
+            }
         });
+        return ResponseEntity.ok("Order created successfully");
     }
 
     private void getOrderHandler(RoutingContext routingContext) {
