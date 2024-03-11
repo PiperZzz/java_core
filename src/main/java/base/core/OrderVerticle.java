@@ -1,19 +1,25 @@
 package base.core;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerRequest;
+import io.vertx.core.Future;
 
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
 public class OrderVerticle extends AbstractVerticle{
     
-    @Autowired
-    private OrderService orderService;
+    private final Logger logger = LoggerFactory.getLogger(OrderVerticle.class);
+    private final OrderService orderService;
+
+    public OrderVerticle(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @Override
     public void start() {
@@ -26,7 +32,13 @@ public class OrderVerticle extends AbstractVerticle{
         router.post("/api/v1/orders/update/:orderId").handler(this::updateOrderHandler);
         router.delete("/api/v1/orders/cancel/:orderId").handler(this::cancelOrderHandler);
 
-        server.requestHandler(router).listen(8080);
+        server.requestHandler(router).listen(8080, result -> {
+            if (result.succeeded()) {
+                logger.info("Server started on port 8080");
+            } else {
+                logger.error("Failed to start server", result.cause());
+            }
+        });
     }
 
     private void createOrder(RoutingContext routingContext) {
