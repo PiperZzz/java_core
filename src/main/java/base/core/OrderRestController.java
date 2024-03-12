@@ -18,16 +18,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderRestController.class);
 
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
+
+    public OrderRestController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @PutMapping("/create")
     public ResponseEntity<String> createOrder(@RequestBody OrderDTO order) {
