@@ -1,3 +1,7 @@
+package base.core.leetcode.tree;
+
+import base.core.leetcode.TreeNode;
+
 public class BalanceTree {
     
     public boolean isBalanced (TreeNode root) {

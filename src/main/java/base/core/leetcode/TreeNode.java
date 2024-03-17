@@ -1,3 +1,5 @@
+package base.core.leetcode;
+
 public class TreeNode {
     public int value;
     public TreeNode left;
