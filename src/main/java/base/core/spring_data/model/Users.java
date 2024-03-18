@@ -3,6 +3,7 @@ package base.core.spring_data.model;
 import java.time.LocalDateTime;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -15,6 +16,7 @@ import javax.persistence.Column;
  */
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "users") /* @Table是可选的，如果不显式标注Spring Data JPA会使用默认规则来猜测表名，包括表内的列名 */
 public class Users {
@@ -31,6 +33,6 @@ public class Users {
     @Column(name = "updatedAt") /* 如果不显式标注列名，Spring Data JPA会使用默认规则来猜测列名 */
     private LocalDateTime updatedAt;
 
-    /* Entity不需要显性声明Constructor，如果非要显式声明，那么必须同时声明带参和无参的Constructor */
+    /* Entity需要显式无参Constructor因为ORM需要 */
     /* 这里的Getter和Setter由@Data自动完成声明 */
 }
